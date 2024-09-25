@@ -9,12 +9,12 @@ let package = Package(
     products: [
         .library(
             name: "cm-sdk-ios-v3",
-            targets: ["cm-sdk-ios-v3"])
+            targets: ["cm_sdk_ios_v3"])
     ],
     dependencies: [],
     targets: [
         .binaryTarget(
             name: "cm-sdk-ios-v3",
-            path: "cm-sdk-ios-v3.xcframework")
+            path: "cm_sdk_ios_v3.xcframework")
     ]
 )
