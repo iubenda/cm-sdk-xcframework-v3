@@ -3128,7 +3128,7 @@
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 1154,
+      "offset": 1151,
       "length": 5,
       "value": "false"
     },
@@ -3205,224 +3205,91 @@
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 771,
+      "offset": 770,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 821,
+      "offset": 820,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 862,
+      "offset": 861,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 894,
+      "offset": 893,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 926,
+      "offset": 925,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 958,
+      "offset": 957,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "Array",
-      "offset": 996,
+      "offset": 995,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "Array",
-      "offset": 1030,
+      "offset": 1029,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 1063,
+      "offset": 1062,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "IntegerLiteral",
-      "offset": 1094,
+      "offset": 1093,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 1124,
+      "offset": 1123,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "StringLiteral",
-      "offset": 2156,
-      "length": 11,
-      "value": "\"cmpimport\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2200,
-      "length": 4,
-      "value": "\"zt\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2237,
-      "length": 10,
-      "value": "\"cmpdebug\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2279,
-      "length": 6,
-      "value": "\"idfa\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2321,
-      "length": 9,
-      "value": "\"cmplang\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2364,
-      "length": 11,
-      "value": "\"usedesign\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2410,
-      "length": 9,
-      "value": "\"appname\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
       "offset": 2461,
-      "length": 17,
-      "value": "\"cmpscreencustom\""
+      "length": 35,
+      "value": "\"https:\/\/%@\/delivery\/appcmp_v5.php\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "StringLiteral",
-      "offset": 2516,
-      "length": 11,
-      "value": "\"cmpscreen\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2561,
-      "length": 15,
-      "value": "\"cmpautoaccept\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2610,
-      "length": 15,
-      "value": "\"cmpautoreject\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2661,
-      "length": 16,
-      "value": "\"cmpsetpurposes\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2712,
-      "length": 15,
-      "value": "\"cmpsetvendors\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2766,
-      "length": 16,
-      "value": "\"cmpskipcookies\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2825,
-      "length": 20,
-      "value": "\"cmpdontfixpurposes\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2881,
-      "length": 7,
-      "value": "\"appid\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2925,
-      "length": 8,
-      "value": "\"cmpatt\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 2970,
-      "length": 6,
-      "value": "\"cdid\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 3006,
-      "length": 7,
-      "value": "\"tvsdk\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 3041,
-      "length": 43,
-      "value": "\"https:\/\/%@\/delivery\/appcmp_v5.php?cdid=%@\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
-      "kind": "StringLiteral",
-      "offset": 3117,
+      "offset": 2529,
       "length": 7,
       "value": "\"3.0.0\""
     },
