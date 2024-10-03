@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'cm-sdk-ios-v3'
-  s.version          = '0.2.0-alpha'
+  s.version          = '0.1.0-alpha'
   s.summary          = 'A Consent Management Platform CMP SDK for iOS by consentmanager'
   s.homepage         = 'https://github.com/iubenda/cm-sdk-xcframework-v3'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
