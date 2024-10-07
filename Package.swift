@@ -9,7 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "cm-sdk-ios-v3",
-            targets: ["cm_sdk_ios_v3"])
+            targets: ["cm-sdk-ios-v3"])
     ],
     dependencies: [],
     targets: [
