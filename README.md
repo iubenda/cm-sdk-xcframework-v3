@@ -1,11 +1,10 @@
-# ``consentmanager CMP SDK``
+# ``consentmanager CMP SDK v3.0.0``
 
 # cm_sdk_ios_v3
 
 cm_sdk_ios_v3 is a comprehensive Consent Management Platform (CMP) SDK for iOS applications. It provides easy-to-use APIs for handling user consent in compliance with various privacy regulations.
 
-**⚠️ IMPORTANT: This is a pre-release version. DO NOT use it in any case. Wait for our official release before implementation.**
-
+For further information, please refer to [our documentation](https://help.consentmanager.net/books/cmp/page/integrating-the-sdk-v3-into-your-mobile-app)
 ## License
 
 CMPManager is available under the MIT license. See the LICENSE file for more info.
