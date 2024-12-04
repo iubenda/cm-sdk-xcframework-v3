@@ -3100,28 +3100,154 @@
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 3337,
+      "offset": 2807,
+      "length": 9,
+      "value": "\"Version\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2848,
+      "length": 17,
+      "value": "\"ConsentLanguage\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2893,
+      "length": 13,
+      "value": "\"PublisherCC\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2940,
+      "length": 19,
+      "value": "\"IsServiceSpecific\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2989,
+      "length": 15,
+      "value": "\"VendorConsent\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3037,
+      "length": 18,
+      "value": "\"TcfPolicyVersion\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3082,
+      "length": 12,
+      "value": "\"CmpVersion\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3135,
+      "length": 26,
+      "value": "\"VendorLegitimateInterest\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3183,
+      "length": 7,
+      "value": "\"CmpId\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3227,
+      "length": 22,
+      "value": "\"SpecialFeatureOptIns\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3277,
+      "length": 13,
+      "value": "\"LastUpdated\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3314,
+      "length": 9,
+      "value": "\"Created\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3357,
+      "length": 19,
+      "value": "\"VendorListVersion\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3412,
+      "length": 21,
+      "value": "\"PurposeOneTreatment\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3463,
+      "length": 15,
+      "value": "\"ConsentScreen\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3517,
+      "length": 24,
+      "value": "\"PurposesLITransparency\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3572,
+      "length": 16,
+      "value": "\"PurposeConsent\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 3625,
+      "length": 22,
+      "value": "\"UseNonStandardStacks\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 14479,
       "length": 19,
       "value": "\"analytics_storage\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 3378,
+      "offset": 14520,
       "length": 12,
       "value": "\"ad_storage\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 3413,
+      "offset": 14555,
       "length": 14,
       "value": "\"ad_user_data\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 3457,
+      "offset": 14599,
       "length": 20,
       "value": "\"ad_personalization\""
     },
@@ -3191,16 +3317,107 @@
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
       "kind": "StringLiteral",
-      "offset": 466,
+      "offset": 619,
       "length": 13,
       "value": "\"consentJson\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
       "kind": "StringLiteral",
-      "offset": 515,
+      "offset": 671,
       "length": 15,
       "value": "\"consentString\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 758,
+      "length": 17,
+      "value": "\"IABTCF_TCString\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 815,
+      "length": 23,
+      "value": "\"IABTCF_VendorConsents\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 879,
+      "length": 24,
+      "value": "\"IABTCF_PurposeConsents\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 934,
+      "length": 17,
+      "value": "\"IABTCF_CmpSdkId\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 987,
+      "length": 22,
+      "value": "\"IABTCF_CmpSdkVersion\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 1046,
+      "length": 20,
+      "value": "\"IABTCF_GdprApplies\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 1103,
+      "length": 20,
+      "value": "\"IABTCF_PublisherCC\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 1175,
+      "length": 35,
+      "value": "\"IABTCF_PurposeLegitimateInterests\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 1257,
+      "length": 30,
+      "value": "\"IABTCF_SpecialFeaturesOptIns\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 1329,
+      "length": 25,
+      "value": "\"IABTCF_PublisherConsent\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 1408,
+      "length": 37,
+      "value": "\"IABTCF_PublisherLegitimateInterests\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 1502,
+      "length": 40,
+      "value": "\"IABTCF_PublisherCustomPurposesConsents\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
+      "kind": "StringLiteral",
+      "offset": 1610,
+      "length": 51,
+      "value": "\"IABTCF_PublisherCustomPurposesLegitimateInterests\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
