@@ -4,3 +4,8 @@ framework module cm_sdk_ios_v3 {
 
   module * { export * }
 }
+
+module cm_sdk_ios_v3.Swift {
+  header "cm_sdk_ios_v3-Swift.h"
+  requires objc
+}

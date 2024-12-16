@@ -1,6 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.2 effective-5.10 (swiftlang-6.0.2.1.2 clang-1600.0.26.4)
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
 // swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name cm_sdk_ios_v3
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
 import AdSupport
 import AppTrackingTransparency
 import Foundation
@@ -17,12 +18,12 @@ public struct CMPConstants {
     public static let javascriptToExecute: Swift.String
   }
 }
-@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class CMPManager : ObjectiveC.NSObject {
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers @objc public class CMPManager : ObjectiveC.NSObject {
   @objc public static let shared: cm_sdk_ios_v3.CMPManager
   @objc weak public var delegate: (any cm_sdk_ios_v3.CMPManagerDelegate)?
-  public func setUrlConfig(_ config: cm_sdk_ios_v3.UrlConfig)
-  public func setWebViewConfig(_ config: cm_sdk_ios_v3.ConsentLayerUIConfig)
-  public func setPresentingViewController(_ viewController: UIKit.UIViewController)
+  @objc(setUrlConfig:) public func setUrlConfig(_ config: cm_sdk_ios_v3.UrlConfig)
+  @objc(setWebViewConfig:) public func setWebViewConfig(_ config: cm_sdk_ios_v3.ConsentLayerUIConfig)
+  @objc(setPresentingViewController:) public func setPresentingViewController(_ viewController: UIKit.UIViewController)
   @objc public func hasUserChoice() -> Swift.Bool
   @objc public func hasPurposeConsent(id: Swift.String) -> Swift.Bool
   @objc public func hasVendorConsent(id: Swift.String) -> Swift.Bool
@@ -59,7 +60,7 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func didCloseConsentLayer()
   @objc dynamic public func didReceiveError(_ error: Swift.String)
 }
-public struct ConsentLayerUIConfig {
+@objc @objcMembers public class ConsentLayerUIConfig : ObjectiveC.NSObject {
   public enum Position {
     case fullScreen
     case halfScreenTop
@@ -73,6 +74,22 @@ public struct ConsentLayerUIConfig {
     case none
   }
   public init(position: cm_sdk_ios_v3.ConsentLayerUIConfig.Position = .fullScreen, backgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle = .dimmed(.black, 0.5), cornerRadius: CoreFoundation.CGFloat = 0, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true)
+  @objc public init(objcPosition: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition, objcBackgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPBackgroundStyle, cornerRadius: CoreFoundation.CGFloat = 0, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true)
+  @_hasMissingDesignatedInitializers @objc public class CMPPosition : ObjectiveC.NSObject {
+    @objc public static let fullScreen: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition
+    @objc public static let halfScreenTop: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition
+    @objc public static let halfScreenBottom: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition
+    @objc public static func custom(rect: CoreFoundation.CGRect) -> cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition
+    @objc deinit
+  }
+  @_hasMissingDesignatedInitializers @objc public class CMPBackgroundStyle : ObjectiveC.NSObject {
+    @objc public static func dimmed(color: UIKit.UIColor, alpha: CoreFoundation.CGFloat) -> cm_sdk_ios_v3.ConsentLayerUIConfig.CMPBackgroundStyle
+    @objc public static func blur(style: UIKit.UIBlurEffect.Style) -> cm_sdk_ios_v3.ConsentLayerUIConfig.CMPBackgroundStyle
+    @objc public static func color(_ color: UIKit.UIColor) -> cm_sdk_ios_v3.ConsentLayerUIConfig.CMPBackgroundStyle
+    @objc public static let none: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPBackgroundStyle
+    @objc deinit
+  }
+  @objc deinit
 }
 @_hasMissingDesignatedInitializers @available(iOS 14, *)
 @objcMembers public class ATTManager {
@@ -101,8 +118,9 @@ public struct ConsentLayerUIConfig {
   @objc func didReceiveError(error: Swift.String)
   @objc func didChangeATTStatus(oldStatus: Swift.Int, newStatus: Swift.Int, lastUpdated: Foundation.Date?)
 }
-public struct UrlConfig {
-  public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String)
+@objcMembers @objc public class UrlConfig : ObjectiveC.NSObject {
+  @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String)
+  @objc deinit
 }
 @available(iOS 14, *)
 extension cm_sdk_ios_v3.ATTManager.AuthorizationStatus : Swift.Equatable {}
