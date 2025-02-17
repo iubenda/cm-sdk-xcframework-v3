@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name cm_sdk_ios_v3
+// swift-module-flags: -target x86_64-apple-ios12-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name cm_sdk_ios_v3
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface
 import AdSupport
 import AppTrackingTransparency
@@ -18,29 +18,30 @@ public struct CMPConstants {
     public static let javascriptToExecute: Swift.String
   }
 }
+public typealias LinkClickHandler = (Foundation.URL) -> Swift.Bool
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers @objc public class CMPManager : ObjectiveC.NSObject {
   @objc public static let shared: cm_sdk_ios_v3.CMPManager
   @objc weak public var delegate: (any cm_sdk_ios_v3.CMPManagerDelegate)?
+  @objc public func setLinkClickHandler(_ handler: @escaping cm_sdk_ios_v3.LinkClickHandler)
+  @objc public func removeLinkClickHandler()
   @objc(setUrlConfig:) public func setUrlConfig(_ config: cm_sdk_ios_v3.UrlConfig)
   @objc(setWebViewConfig:) public func setWebViewConfig(_ config: cm_sdk_ios_v3.ConsentLayerUIConfig)
   @objc(setPresentingViewController:) public func setPresentingViewController(_ viewController: UIKit.UIViewController)
-  @objc public func hasUserChoice() -> Swift.Bool
-  @objc public func hasPurposeConsent(id: Swift.String) -> Swift.Bool
-  @objc public func hasVendorConsent(id: Swift.String) -> Swift.Bool
+  @objc public func getStatusForPurpose(id: Swift.String) -> cm_sdk_ios_v3.UniqueConsentStatus
+  @objc public func getStatusForVendor(id: Swift.String) -> cm_sdk_ios_v3.UniqueConsentStatus
+  @objc public func getGoogleConsentModeStatus() -> [Swift.String : Swift.String]
   @objc public func exportCMPInfo() -> Swift.String
-  @objc public func getAllPurposesIDs() -> [Swift.String]
-  @objc public func getEnabledPurposesIDs() -> [Swift.String]
-  @objc public func getDisabledPurposesIDs() -> [Swift.String]
-  @objc public func getAllVendorsIDs() -> [Swift.String]
-  @objc public func getEnabledVendorsIDs() -> [Swift.String]
-  @objc public func getDisabledVendorsIDs() -> [Swift.String]
+  @objc public func getUserStatus() -> cm_sdk_ios_v3.CMPUserStatusResponse
   @objc deinit
 }
 extension cm_sdk_ios_v3.CMPManager {
+  @available(*, deprecated, message: "Use checkAndOpen(jumpToSettings:completion:) instead")
   @objc dynamic public func checkWithServerAndOpenIfNecessary(completion: @escaping (Foundation.NSError?) -> Swift.Void)
-  @objc dynamic public func openConsentLayer(completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc dynamic public func checkAndOpen(jumpToSettings: Swift.Bool = false, completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc @available(iOS 13.0.0, *)
+  dynamic public func checkAndOpen(jumpToSettings: Swift.Bool = false) async throws
+  @objc dynamic public func forceOpen(jumpToSettings: Swift.Bool = false, completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func jumpToSettings(completion: @escaping (Foundation.NSError?) -> Swift.Void)
-  @objc dynamic public func checkIfConsentIsRequired(completion: @escaping (Swift.Bool) -> Swift.Void)
   @objc dynamic public func acceptVendors(_ vendors: [Swift.String], completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func rejectVendors(_ vendors: [Swift.String], completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func acceptPurposes(_ purposes: [Swift.String], updatePurpose: Swift.Bool, completion: @escaping (Foundation.NSError?) -> Swift.Void)
@@ -49,6 +50,28 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func acceptAll(completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func importCMPInfo(_ cmpString: Swift.String, completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func resetConsentManagementData(completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func checkIfConsentIsRequired(completion: @escaping (Swift.Bool) -> Swift.Void)
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func hasUserChoice() -> Swift.Bool
+  @available(*, deprecated, message: "Use getStatusForPurpose() instead")
+  @objc dynamic public func hasPurposeConsent(id: Swift.String) -> Swift.Bool
+  @available(*, deprecated, message: "Use getStatusForVendor() instead")
+  @objc dynamic public func hasVendorConsent(id: Swift.String) -> Swift.Bool
+  @available(*, deprecated, message: "Use forceOpen(jumpToSettings:completion:) instead")
+  @objc dynamic public func openConsentLayer(completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getAllPurposesIDs() -> [Swift.String]
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getEnabledPurposesIDs() -> [Swift.String]
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getDisabledPurposesIDs() -> [Swift.String]
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getAllVendorsIDs() -> [Swift.String]
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getEnabledVendorsIDs() -> [Swift.String]
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getDisabledVendorsIDs() -> [Swift.String]
   @available(iOS 14, *)
   @objc dynamic public func requestATTAuthorization(completion: @escaping (cm_sdk_ios_v3.ATTManager.AuthorizationStatus) -> Swift.Void)
   @available(iOS 14, *)
@@ -59,26 +82,32 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func didReceiveOpenMessage()
   @objc dynamic public func didCloseConsentLayer()
   @objc dynamic public func didReceiveError(_ error: Swift.String)
+  @objc dynamic public func getOnClickLinkCallback() -> cm_sdk_ios_v3.LinkClickHandler?
+}
+@_hasMissingDesignatedInitializers @objc public class CMPUserStatusResponse : ObjectiveC.NSObject {
+  @objc final public let status: Swift.String
+  @objc final public let vendors: [Swift.String : Swift.String]
+  @objc final public let purposes: [Swift.String : Swift.String]
+  @objc final public let tcf: Swift.String
+  @objc final public let addtlConsent: Swift.String
+  @objc final public let regulation: Swift.String
+  @objc deinit
+}
+public enum Position {
+  case fullScreen
+  case custom(CoreFoundation.CGRect)
+}
+public enum BackgroundStyle {
+  case dimmed(UIKit.UIColor, CoreFoundation.CGFloat)
+  case blur(UIKit.UIBlurEffect.Style)
+  case color(UIKit.UIColor)
+  case none
 }
 @objc @objcMembers public class ConsentLayerUIConfig : ObjectiveC.NSObject {
-  public enum Position {
-    case fullScreen
-    case halfScreenTop
-    case halfScreenBottom
-    case custom(CoreFoundation.CGRect)
-  }
-  public enum BackgroundStyle {
-    case dimmed(UIKit.UIColor, CoreFoundation.CGFloat)
-    case blur(UIKit.UIBlurEffect.Style)
-    case color(UIKit.UIColor)
-    case none
-  }
-  public init(position: cm_sdk_ios_v3.ConsentLayerUIConfig.Position = .fullScreen, backgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle = .dimmed(.black, 0.5), cornerRadius: CoreFoundation.CGFloat = 0, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true)
-  @objc public init(objcPosition: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition, objcBackgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPBackgroundStyle, cornerRadius: CoreFoundation.CGFloat = 0, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true)
+  public init(position: cm_sdk_ios_v3.Position = .fullScreen, backgroundStyle: cm_sdk_ios_v3.BackgroundStyle = .dimmed(.black, 0.5), cornerRadius: CoreFoundation.CGFloat = 10, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true, darkMode: Swift.Bool = false)
+  @objc public init(objcPosition: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition, objcBackgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPBackgroundStyle, cornerRadius: CoreFoundation.CGFloat = 0, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true, darkMode: Swift.Bool = false)
   @_hasMissingDesignatedInitializers @objc public class CMPPosition : ObjectiveC.NSObject {
     @objc public static let fullScreen: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition
-    @objc public static let halfScreenTop: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition
-    @objc public static let halfScreenBottom: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition
     @objc public static func custom(rect: CoreFoundation.CGRect) -> cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition
     @objc deinit
   }
@@ -122,9 +151,22 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String)
   @objc deinit
 }
+@objc public enum UniqueConsentStatus : Swift.Int {
+  case choiceDoesntExist
+  case granted
+  case denied
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
 @available(iOS 14, *)
 extension cm_sdk_ios_v3.ATTManager.AuthorizationStatus : Swift.Equatable {}
 @available(iOS 14, *)
 extension cm_sdk_ios_v3.ATTManager.AuthorizationStatus : Swift.Hashable {}
 @available(iOS 14, *)
 extension cm_sdk_ios_v3.ATTManager.AuthorizationStatus : Swift.RawRepresentable {}
+extension cm_sdk_ios_v3.UniqueConsentStatus : Swift.Equatable {}
+extension cm_sdk_ios_v3.UniqueConsentStatus : Swift.Hashable {}
+extension cm_sdk_ios_v3.UniqueConsentStatus : Swift.RawRepresentable {}
