@@ -316,48 +316,157 @@ enum UniqueConsentStatus : NSInteger;
 
 SWIFT_CLASS("_TtC13cm_sdk_ios_v310CMPManager")
 @interface CMPManager : NSObject
+/// Shared instance of the CMPManager
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPManager * _Nonnull shared;)
 + (CMPManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// Delegate that receives callbacks about consent events
 @property (nonatomic, weak) id <CMPManagerDelegate> _Nullable delegate;
+/// Sets a handler for when links are clicked in the consent layer
+/// \param handler The handler that determines if a link should be opened
+///
 - (void)setLinkClickHandler:(BOOL (^ _Nonnull)(NSURL * _Nonnull))handler;
+/// Removes the previously set link click handler
 - (void)removeLinkClickHandler;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+/// Sets the URL configuration for the consent manager
+/// \param config The URL configuration
+///
 - (void)setUrlConfig:(UrlConfig * _Nonnull)config;
+/// Sets the UI configuration for the consent layer
+/// \param config The UI configuration
+///
 - (void)setWebViewConfig:(ConsentLayerUIConfig * _Nonnull)config;
+/// Sets the view controller that will present the consent layer
+/// \param viewController The presenting view controller
+///
 - (void)setPresentingViewController:(UIViewController * _Nonnull)viewController;
+/// Gets the status for a specific purpose
+/// \param id The purpose ID
+///
+///
+/// returns:
+/// The consent status
 - (enum UniqueConsentStatus)getStatusForPurposeWithId:(NSString * _Nonnull)id SWIFT_WARN_UNUSED_RESULT;
+/// Gets the status for a specific vendor
+/// \param id The vendor ID
+///
+///
+/// returns:
+/// The consent status
 - (enum UniqueConsentStatus)getStatusForVendorWithId:(NSString * _Nonnull)id SWIFT_WARN_UNUSED_RESULT;
 - (NSDictionary<NSString *, NSString *> * _Nonnull)getGoogleConsentModeStatus SWIFT_WARN_UNUSED_RESULT;
+/// Exports the CMP string . The results should be used in tandem with the importCMPInfo method, AS-IS
+/// in mobile apps that mix native content with web content.
+///
+/// returns:
+/// The CMP information string
 - (NSString * _Nonnull)exportCMPInfo SWIFT_WARN_UNUSED_RESULT;
+/// Gets the current consent status for all purposes and vendors
+///
+/// returns:
+/// A CMPUserStatusResponse object containing all consent statuses
 - (CMPUserStatusResponse * _Nonnull)getUserStatus SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
 @interface CMPManager (SWIFT_EXTENSION(cm_sdk_ios_v3))
+/// Called when consent is received from the user
+/// \param consent The consent string
+///
+/// \param jsonObject The detailed consent information as a dictionary
+///
 - (void)didReceiveConsentMessage:(NSString * _Nonnull)consent jsonObject:(NSDictionary<NSString *, id> * _Nonnull)jsonObject;
+/// Called when the consent layer is shown
 - (void)didReceiveOpenMessage;
+/// Called when the SDK decided that the consent layer should not displayed due to the fact that
+/// consents are up-to-date and a new consent was not needed.
 - (void)didCloseConsentLayer;
+/// Called when an error occurs
+/// \param error The error message
+///
 - (void)didReceiveError:(NSString * _Nonnull)error;
+/// Called when a link is clicked inside the consent layer, so developers can decide whether to
+/// navigate to the URL link inside the webview, block it or open the URL link in another browser
+/// \param error The error message
+///
 - (BOOL (^ _Nullable)(NSURL * _Nonnull))getOnClickLinkCallback SWIFT_WARN_UNUSED_RESULT;
 @end
 
 @class NSError;
-enum AuthorizationStatus : NSInteger;
 
 @interface CMPManager (SWIFT_EXTENSION(cm_sdk_ios_v3))
 - (void)checkWithServerAndOpenIfNecessaryWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion SWIFT_DEPRECATED_MSG("Use checkAndOpen(jumpToSettings:completion:) instead");
+/// Checks if consent is needed and opens the consent layer if necessary
+/// \param jumpToSettings Whether to jump directly to the settings page
+///
+/// \param completion Callback with an optional error
+///
 - (void)checkAndOpenWithJumpToSettings:(BOOL)jumpToSettings completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Checks if consent is needed and opens the consent layer if necessary, async version
+/// \param jumpToSettings Whether to jump directly to the settings page
+///
+/// \param completion Callback with an optional error
+///
 - (void)checkAndOpenWithJumpToSettings:(BOOL)jumpToSettings completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler SWIFT_AVAILABILITY(ios,introduced=13.0.0);
+/// Forces the consent layer to open
+/// \param jumpToSettings Whether to jump directly to the settings page
+///
+/// \param completion Callback with an optional error
+///
 - (void)forceOpenWithJumpToSettings:(BOOL)jumpToSettings completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Jumps directly to the settings page
+/// \param completion Callback with an optional error
+///
 - (void)jumpToSettingsWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Accepts consent for specific vendors
+/// \param vendors Array of vendor IDs to accept
+///
+/// \param completion Callback with an optional error
+///
 - (void)acceptVendors:(NSArray<NSString *> * _Nonnull)vendors completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Rejects consent for specific vendors
+/// \param vendors Array of vendor IDs to reject
+///
+/// \param completion Callback with an optional error
+///
 - (void)rejectVendors:(NSArray<NSString *> * _Nonnull)vendors completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Accepts consent for specific purposes
+/// \param purposes Array of purpose IDs to accept
+///
+/// \param updatePurpose Whether to update related vendors
+///
+/// \param completion Callback with an optional error
+///
 - (void)acceptPurposes:(NSArray<NSString *> * _Nonnull)purposes updatePurpose:(BOOL)updatePurpose completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Rejects consent for specific purposes
+/// \param purposes Array of purpose IDs to reject
+///
+/// \param updateVendor Whether to update related vendors
+///
+/// \param completion Callback with an optional error
+///
 - (void)rejectPurposes:(NSArray<NSString *> * _Nonnull)purposes updateVendor:(BOOL)updateVendor completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Rejects all consents. It’s the similar behaviour of clicking in the Accept All button in the consent layer.
+/// It denies consents to all vendors and purposes.
+/// \param completion Callback with an optional error
+///
 - (void)rejectAllWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Accepts all consents. It’s the similar behaviour of clicking in the Accept All button in the consent layer.
+/// It grants consents to all vendors and purposes.
+/// \param completion Callback with an optional error
+///
 - (void)acceptAllWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Imports a CMP information string. It should be used in tandem with the exportCMPInfo on mobile apps
+/// that mix native content with web content.
+/// \param cmpString The CMP string to import
+///
+/// \param completion Callback with an optional error
+///
 - (void)importCMPInfo:(NSString * _Nonnull)cmpString completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Resets all consent management data
+/// \param completion Callback with an optional error
+///
 - (void)resetConsentManagementDataWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
 - (void)checkIfConsentIsRequiredWithCompletion:(void (^ _Nonnull)(BOOL))completion SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 - (BOOL)hasUserChoice SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
@@ -370,8 +479,6 @@ enum AuthorizationStatus : NSInteger;
 - (NSArray<NSString *> * _Nonnull)getAllVendorsIDs SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 - (NSArray<NSString *> * _Nonnull)getEnabledVendorsIDs SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 - (NSArray<NSString *> * _Nonnull)getDisabledVendorsIDs SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
-- (void)requestATTAuthorizationWithCompletion:(void (^ _Nonnull)(enum AuthorizationStatus))completion SWIFT_AVAILABILITY(ios,introduced=14);
-- (enum AuthorizationStatus)getATTAuthorizationStatus SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=14);
 @end
 
 @class NSDate;
@@ -388,11 +495,17 @@ SWIFT_PROTOCOL("_TtP13cm_sdk_ios_v318CMPManagerDelegate_")
 
 SWIFT_CLASS("_TtC13cm_sdk_ios_v321CMPUserStatusResponse")
 @interface CMPUserStatusResponse : NSObject
+/// The overall consent status (“choiceExists” or “choiceDoesntExist”)
 @property (nonatomic, readonly, copy) NSString * _Nonnull status;
+/// Dictionary of vendor IDs to their consent status (“granted” or “denied”)
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull vendors;
+/// Dictionary of purpose IDs to their consent status (“granted” or “denied”)
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull purposes;
+/// The TCF (Transparency & Consent Framework) string
 @property (nonatomic, readonly, copy) NSString * _Nonnull tcf;
+/// Additional consent information
 @property (nonatomic, readonly, copy) NSString * _Nonnull addtlConsent;
+/// The current regulation key (e.g., “GDPR”)
 @property (nonatomic, readonly, copy) NSString * _Nonnull regulation;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
@@ -403,12 +516,34 @@ SWIFT_CLASS("_TtC13cm_sdk_ios_v321CMPUserStatusResponse")
 
 SWIFT_CLASS("_TtC13cm_sdk_ios_v320ConsentLayerUIConfig")
 @interface ConsentLayerUIConfig : NSObject
+/// The corner radius of the consent layer
+@property (nonatomic, readonly) CGFloat cornerRadius;
+/// Whether the consent layer respects the safe area
+@property (nonatomic, readonly) BOOL respectsSafeArea;
+/// Whether the consent layer allows orientation changes
+@property (nonatomic, readonly) BOOL allowsOrientationChanges;
+/// Whether to use dark mode in the consent layer
+@property (nonatomic, readonly) BOOL darkMode;
+/// Initializes a new consent layer UI configuration using Objective-C compatible classes
+/// \param objcPosition The position of the consent layer
+///
+/// \param objcBackgroundStyle The background style of the consent layer
+///
+/// \param cornerRadius The corner radius of the consent layer
+///
+/// \param respectsSafeArea Whether the consent layer respects the safe area
+///
+/// \param allowsOrientationChanges Whether the consent layer allows orientation changes
+///
+/// \param darkMode Whether to use dark mode in the consent layer
+///
 - (nonnull instancetype)initWithObjcPosition:(CMPPosition * _Nonnull)objcPosition objcBackgroundStyle:(CMPBackgroundStyle * _Nonnull)objcBackgroundStyle cornerRadius:(CGFloat)cornerRadius respectsSafeArea:(BOOL)respectsSafeArea allowsOrientationChanges:(BOOL)allowsOrientationChanges darkMode:(BOOL)darkMode OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
 
+/// Objective-C compatible wrapper for Position
 SWIFT_CLASS("_TtCC13cm_sdk_ios_v320ConsentLayerUIConfig11CMPPosition")
 @interface CMPPosition : NSObject
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPPosition * _Nonnull fullScreen;)
@@ -420,11 +555,33 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPPosition 
 
 @class UIColor;
 
+/// Objective-C compatible wrapper for BackgroundStyle
 SWIFT_CLASS("_TtCC13cm_sdk_ios_v320ConsentLayerUIConfig18CMPBackgroundStyle")
 @interface CMPBackgroundStyle : NSObject
+/// Creates a dimmed background style
+/// \param color The background color
+///
+/// \param alpha The alpha value
+///
+///
+/// returns:
+/// A CMPBackgroundStyle instance
 + (CMPBackgroundStyle * _Nonnull)dimmedWithColor:(UIColor * _Nonnull)color alpha:(CGFloat)alpha SWIFT_WARN_UNUSED_RESULT;
+/// Creates a blur background style
+/// \param style The blur effect style
+///
+///
+/// returns:
+/// A CMPBackgroundStyle instance
 + (CMPBackgroundStyle * _Nonnull)blurWithStyle:(enum UIBlurEffectStyle)style SWIFT_WARN_UNUSED_RESULT;
+/// Creates a solid color background style
+/// \param color The background color
+///
+///
+/// returns:
+/// A CMPBackgroundStyle instance
 + (CMPBackgroundStyle * _Nonnull)color:(UIColor * _Nonnull)color SWIFT_WARN_UNUSED_RESULT;
+/// No background
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPBackgroundStyle * _Nonnull none;)
 + (CMPBackgroundStyle * _Nonnull)none SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -441,7 +598,18 @@ typedef SWIFT_ENUM(NSInteger, UniqueConsentStatus, open) {
 
 SWIFT_CLASS("_TtC13cm_sdk_ios_v39UrlConfig")
 @interface UrlConfig : NSObject
-- (nonnull instancetype)initWithId:(NSString * _Nonnull)id domain:(NSString * _Nonnull)domain language:(NSString * _Nonnull)language appName:(NSString * _Nonnull)appName OBJC_DESIGNATED_INITIALIZER;
+/// Initializes a new URL configuration
+/// \param id The Code-ID for this consent configuration, obtained from the CMP’s dashboard.
+///
+/// \param domain The domain to use for the consent manager service, obtained from the CMP’s dashboard.
+///
+/// \param language The language code o determine in which language the consent layer text should be displayed.
+///
+/// \param appName The name of the app that is using the consent manager. Used for reporting cases.
+///
+/// \param idfa The IDFA of the user’s device, if available.
+///
+- (nonnull instancetype)initWithId:(NSString * _Nonnull)id domain:(NSString * _Nonnull)domain language:(NSString * _Nonnull)language appName:(NSString * _Nonnull)appName idfa:(NSString * _Nullable)idfa OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -772,48 +940,157 @@ enum UniqueConsentStatus : NSInteger;
 
 SWIFT_CLASS("_TtC13cm_sdk_ios_v310CMPManager")
 @interface CMPManager : NSObject
+/// Shared instance of the CMPManager
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPManager * _Nonnull shared;)
 + (CMPManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// Delegate that receives callbacks about consent events
 @property (nonatomic, weak) id <CMPManagerDelegate> _Nullable delegate;
+/// Sets a handler for when links are clicked in the consent layer
+/// \param handler The handler that determines if a link should be opened
+///
 - (void)setLinkClickHandler:(BOOL (^ _Nonnull)(NSURL * _Nonnull))handler;
+/// Removes the previously set link click handler
 - (void)removeLinkClickHandler;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+/// Sets the URL configuration for the consent manager
+/// \param config The URL configuration
+///
 - (void)setUrlConfig:(UrlConfig * _Nonnull)config;
+/// Sets the UI configuration for the consent layer
+/// \param config The UI configuration
+///
 - (void)setWebViewConfig:(ConsentLayerUIConfig * _Nonnull)config;
+/// Sets the view controller that will present the consent layer
+/// \param viewController The presenting view controller
+///
 - (void)setPresentingViewController:(UIViewController * _Nonnull)viewController;
+/// Gets the status for a specific purpose
+/// \param id The purpose ID
+///
+///
+/// returns:
+/// The consent status
 - (enum UniqueConsentStatus)getStatusForPurposeWithId:(NSString * _Nonnull)id SWIFT_WARN_UNUSED_RESULT;
+/// Gets the status for a specific vendor
+/// \param id The vendor ID
+///
+///
+/// returns:
+/// The consent status
 - (enum UniqueConsentStatus)getStatusForVendorWithId:(NSString * _Nonnull)id SWIFT_WARN_UNUSED_RESULT;
 - (NSDictionary<NSString *, NSString *> * _Nonnull)getGoogleConsentModeStatus SWIFT_WARN_UNUSED_RESULT;
+/// Exports the CMP string . The results should be used in tandem with the importCMPInfo method, AS-IS
+/// in mobile apps that mix native content with web content.
+///
+/// returns:
+/// The CMP information string
 - (NSString * _Nonnull)exportCMPInfo SWIFT_WARN_UNUSED_RESULT;
+/// Gets the current consent status for all purposes and vendors
+///
+/// returns:
+/// A CMPUserStatusResponse object containing all consent statuses
 - (CMPUserStatusResponse * _Nonnull)getUserStatus SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
 @interface CMPManager (SWIFT_EXTENSION(cm_sdk_ios_v3))
+/// Called when consent is received from the user
+/// \param consent The consent string
+///
+/// \param jsonObject The detailed consent information as a dictionary
+///
 - (void)didReceiveConsentMessage:(NSString * _Nonnull)consent jsonObject:(NSDictionary<NSString *, id> * _Nonnull)jsonObject;
+/// Called when the consent layer is shown
 - (void)didReceiveOpenMessage;
+/// Called when the SDK decided that the consent layer should not displayed due to the fact that
+/// consents are up-to-date and a new consent was not needed.
 - (void)didCloseConsentLayer;
+/// Called when an error occurs
+/// \param error The error message
+///
 - (void)didReceiveError:(NSString * _Nonnull)error;
+/// Called when a link is clicked inside the consent layer, so developers can decide whether to
+/// navigate to the URL link inside the webview, block it or open the URL link in another browser
+/// \param error The error message
+///
 - (BOOL (^ _Nullable)(NSURL * _Nonnull))getOnClickLinkCallback SWIFT_WARN_UNUSED_RESULT;
 @end
 
 @class NSError;
-enum AuthorizationStatus : NSInteger;
 
 @interface CMPManager (SWIFT_EXTENSION(cm_sdk_ios_v3))
 - (void)checkWithServerAndOpenIfNecessaryWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion SWIFT_DEPRECATED_MSG("Use checkAndOpen(jumpToSettings:completion:) instead");
+/// Checks if consent is needed and opens the consent layer if necessary
+/// \param jumpToSettings Whether to jump directly to the settings page
+///
+/// \param completion Callback with an optional error
+///
 - (void)checkAndOpenWithJumpToSettings:(BOOL)jumpToSettings completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Checks if consent is needed and opens the consent layer if necessary, async version
+/// \param jumpToSettings Whether to jump directly to the settings page
+///
+/// \param completion Callback with an optional error
+///
 - (void)checkAndOpenWithJumpToSettings:(BOOL)jumpToSettings completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler SWIFT_AVAILABILITY(ios,introduced=13.0.0);
+/// Forces the consent layer to open
+/// \param jumpToSettings Whether to jump directly to the settings page
+///
+/// \param completion Callback with an optional error
+///
 - (void)forceOpenWithJumpToSettings:(BOOL)jumpToSettings completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Jumps directly to the settings page
+/// \param completion Callback with an optional error
+///
 - (void)jumpToSettingsWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Accepts consent for specific vendors
+/// \param vendors Array of vendor IDs to accept
+///
+/// \param completion Callback with an optional error
+///
 - (void)acceptVendors:(NSArray<NSString *> * _Nonnull)vendors completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Rejects consent for specific vendors
+/// \param vendors Array of vendor IDs to reject
+///
+/// \param completion Callback with an optional error
+///
 - (void)rejectVendors:(NSArray<NSString *> * _Nonnull)vendors completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Accepts consent for specific purposes
+/// \param purposes Array of purpose IDs to accept
+///
+/// \param updatePurpose Whether to update related vendors
+///
+/// \param completion Callback with an optional error
+///
 - (void)acceptPurposes:(NSArray<NSString *> * _Nonnull)purposes updatePurpose:(BOOL)updatePurpose completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Rejects consent for specific purposes
+/// \param purposes Array of purpose IDs to reject
+///
+/// \param updateVendor Whether to update related vendors
+///
+/// \param completion Callback with an optional error
+///
 - (void)rejectPurposes:(NSArray<NSString *> * _Nonnull)purposes updateVendor:(BOOL)updateVendor completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Rejects all consents. It’s the similar behaviour of clicking in the Accept All button in the consent layer.
+/// It denies consents to all vendors and purposes.
+/// \param completion Callback with an optional error
+///
 - (void)rejectAllWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Accepts all consents. It’s the similar behaviour of clicking in the Accept All button in the consent layer.
+/// It grants consents to all vendors and purposes.
+/// \param completion Callback with an optional error
+///
 - (void)acceptAllWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Imports a CMP information string. It should be used in tandem with the exportCMPInfo on mobile apps
+/// that mix native content with web content.
+/// \param cmpString The CMP string to import
+///
+/// \param completion Callback with an optional error
+///
 - (void)importCMPInfo:(NSString * _Nonnull)cmpString completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Resets all consent management data
+/// \param completion Callback with an optional error
+///
 - (void)resetConsentManagementDataWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
 - (void)checkIfConsentIsRequiredWithCompletion:(void (^ _Nonnull)(BOOL))completion SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 - (BOOL)hasUserChoice SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
@@ -826,8 +1103,6 @@ enum AuthorizationStatus : NSInteger;
 - (NSArray<NSString *> * _Nonnull)getAllVendorsIDs SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 - (NSArray<NSString *> * _Nonnull)getEnabledVendorsIDs SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 - (NSArray<NSString *> * _Nonnull)getDisabledVendorsIDs SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
-- (void)requestATTAuthorizationWithCompletion:(void (^ _Nonnull)(enum AuthorizationStatus))completion SWIFT_AVAILABILITY(ios,introduced=14);
-- (enum AuthorizationStatus)getATTAuthorizationStatus SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,introduced=14);
 @end
 
 @class NSDate;
@@ -844,11 +1119,17 @@ SWIFT_PROTOCOL("_TtP13cm_sdk_ios_v318CMPManagerDelegate_")
 
 SWIFT_CLASS("_TtC13cm_sdk_ios_v321CMPUserStatusResponse")
 @interface CMPUserStatusResponse : NSObject
+/// The overall consent status (“choiceExists” or “choiceDoesntExist”)
 @property (nonatomic, readonly, copy) NSString * _Nonnull status;
+/// Dictionary of vendor IDs to their consent status (“granted” or “denied”)
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull vendors;
+/// Dictionary of purpose IDs to their consent status (“granted” or “denied”)
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull purposes;
+/// The TCF (Transparency & Consent Framework) string
 @property (nonatomic, readonly, copy) NSString * _Nonnull tcf;
+/// Additional consent information
 @property (nonatomic, readonly, copy) NSString * _Nonnull addtlConsent;
+/// The current regulation key (e.g., “GDPR”)
 @property (nonatomic, readonly, copy) NSString * _Nonnull regulation;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
@@ -859,12 +1140,34 @@ SWIFT_CLASS("_TtC13cm_sdk_ios_v321CMPUserStatusResponse")
 
 SWIFT_CLASS("_TtC13cm_sdk_ios_v320ConsentLayerUIConfig")
 @interface ConsentLayerUIConfig : NSObject
+/// The corner radius of the consent layer
+@property (nonatomic, readonly) CGFloat cornerRadius;
+/// Whether the consent layer respects the safe area
+@property (nonatomic, readonly) BOOL respectsSafeArea;
+/// Whether the consent layer allows orientation changes
+@property (nonatomic, readonly) BOOL allowsOrientationChanges;
+/// Whether to use dark mode in the consent layer
+@property (nonatomic, readonly) BOOL darkMode;
+/// Initializes a new consent layer UI configuration using Objective-C compatible classes
+/// \param objcPosition The position of the consent layer
+///
+/// \param objcBackgroundStyle The background style of the consent layer
+///
+/// \param cornerRadius The corner radius of the consent layer
+///
+/// \param respectsSafeArea Whether the consent layer respects the safe area
+///
+/// \param allowsOrientationChanges Whether the consent layer allows orientation changes
+///
+/// \param darkMode Whether to use dark mode in the consent layer
+///
 - (nonnull instancetype)initWithObjcPosition:(CMPPosition * _Nonnull)objcPosition objcBackgroundStyle:(CMPBackgroundStyle * _Nonnull)objcBackgroundStyle cornerRadius:(CGFloat)cornerRadius respectsSafeArea:(BOOL)respectsSafeArea allowsOrientationChanges:(BOOL)allowsOrientationChanges darkMode:(BOOL)darkMode OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
 
+/// Objective-C compatible wrapper for Position
 SWIFT_CLASS("_TtCC13cm_sdk_ios_v320ConsentLayerUIConfig11CMPPosition")
 @interface CMPPosition : NSObject
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPPosition * _Nonnull fullScreen;)
@@ -876,11 +1179,33 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPPosition 
 
 @class UIColor;
 
+/// Objective-C compatible wrapper for BackgroundStyle
 SWIFT_CLASS("_TtCC13cm_sdk_ios_v320ConsentLayerUIConfig18CMPBackgroundStyle")
 @interface CMPBackgroundStyle : NSObject
+/// Creates a dimmed background style
+/// \param color The background color
+///
+/// \param alpha The alpha value
+///
+///
+/// returns:
+/// A CMPBackgroundStyle instance
 + (CMPBackgroundStyle * _Nonnull)dimmedWithColor:(UIColor * _Nonnull)color alpha:(CGFloat)alpha SWIFT_WARN_UNUSED_RESULT;
+/// Creates a blur background style
+/// \param style The blur effect style
+///
+///
+/// returns:
+/// A CMPBackgroundStyle instance
 + (CMPBackgroundStyle * _Nonnull)blurWithStyle:(enum UIBlurEffectStyle)style SWIFT_WARN_UNUSED_RESULT;
+/// Creates a solid color background style
+/// \param color The background color
+///
+///
+/// returns:
+/// A CMPBackgroundStyle instance
 + (CMPBackgroundStyle * _Nonnull)color:(UIColor * _Nonnull)color SWIFT_WARN_UNUSED_RESULT;
+/// No background
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPBackgroundStyle * _Nonnull none;)
 + (CMPBackgroundStyle * _Nonnull)none SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -897,7 +1222,18 @@ typedef SWIFT_ENUM(NSInteger, UniqueConsentStatus, open) {
 
 SWIFT_CLASS("_TtC13cm_sdk_ios_v39UrlConfig")
 @interface UrlConfig : NSObject
-- (nonnull instancetype)initWithId:(NSString * _Nonnull)id domain:(NSString * _Nonnull)domain language:(NSString * _Nonnull)language appName:(NSString * _Nonnull)appName OBJC_DESIGNATED_INITIALIZER;
+/// Initializes a new URL configuration
+/// \param id The Code-ID for this consent configuration, obtained from the CMP’s dashboard.
+///
+/// \param domain The domain to use for the consent manager service, obtained from the CMP’s dashboard.
+///
+/// \param language The language code o determine in which language the consent layer text should be displayed.
+///
+/// \param appName The name of the app that is using the consent manager. Used for reporting cases.
+///
+/// \param idfa The IDFA of the user’s device, if available.
+///
+- (nonnull instancetype)initWithId:(NSString * _Nonnull)id domain:(NSString * _Nonnull)domain language:(NSString * _Nonnull)language appName:(NSString * _Nonnull)appName idfa:(NSString * _Nullable)idfa OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end

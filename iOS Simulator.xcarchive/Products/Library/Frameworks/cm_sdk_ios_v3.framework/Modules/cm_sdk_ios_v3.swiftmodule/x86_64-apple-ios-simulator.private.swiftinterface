@@ -2,7 +2,6 @@
 // swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
 // swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name cm_sdk_ios_v3
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface
-import AdSupport
 import AppTrackingTransparency
 import Foundation
 import Network
@@ -72,10 +71,6 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func getEnabledVendorsIDs() -> [Swift.String]
   @available(*, deprecated, message: "Use getUserStatus() instead")
   @objc dynamic public func getDisabledVendorsIDs() -> [Swift.String]
-  @available(iOS 14, *)
-  @objc dynamic public func requestATTAuthorization(completion: @escaping (cm_sdk_ios_v3.ATTManager.AuthorizationStatus) -> Swift.Void)
-  @available(iOS 14, *)
-  @objc dynamic public func getATTAuthorizationStatus() -> cm_sdk_ios_v3.ATTManager.AuthorizationStatus
 }
 extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func didReceiveConsentMessage(_ consent: Swift.String, jsonObject: [Swift.String : Any])
@@ -84,7 +79,7 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func didReceiveError(_ error: Swift.String)
   @objc dynamic public func getOnClickLinkCallback() -> cm_sdk_ios_v3.LinkClickHandler?
 }
-@_hasMissingDesignatedInitializers @objc public class CMPUserStatusResponse : ObjectiveC.NSObject {
+@_hasMissingDesignatedInitializers @objcMembers @objc public class CMPUserStatusResponse : ObjectiveC.NSObject {
   @objc final public let status: Swift.String
   @objc final public let vendors: [Swift.String : Swift.String]
   @objc final public let purposes: [Swift.String : Swift.String]
@@ -93,18 +88,24 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc final public let regulation: Swift.String
   @objc deinit
 }
-public enum Position {
-  case fullScreen
-  case custom(CoreFoundation.CGRect)
-}
-public enum BackgroundStyle {
-  case dimmed(UIKit.UIColor, CoreFoundation.CGFloat)
-  case blur(UIKit.UIBlurEffect.Style)
-  case color(UIKit.UIColor)
-  case none
-}
 @objc @objcMembers public class ConsentLayerUIConfig : ObjectiveC.NSObject {
-  public init(position: cm_sdk_ios_v3.Position = .fullScreen, backgroundStyle: cm_sdk_ios_v3.BackgroundStyle = .dimmed(.black, 0.5), cornerRadius: CoreFoundation.CGFloat = 10, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true, darkMode: Swift.Bool = false)
+  public enum Position {
+    case fullScreen
+    case custom(CoreFoundation.CGRect)
+  }
+  public enum BackgroundStyle {
+    case dimmed(UIKit.UIColor, CoreFoundation.CGFloat)
+    case blur(UIKit.UIBlurEffect.Style)
+    case color(UIKit.UIColor)
+    case none
+  }
+  final public let position: cm_sdk_ios_v3.ConsentLayerUIConfig.Position
+  final public let backgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle
+  @objc final public let cornerRadius: CoreFoundation.CGFloat
+  @objc final public let respectsSafeArea: Swift.Bool
+  @objc final public let allowsOrientationChanges: Swift.Bool
+  @objc final public let darkMode: Swift.Bool
+  public init(position: cm_sdk_ios_v3.ConsentLayerUIConfig.Position = .fullScreen, backgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle = .dimmed(UIColor.black, 0.5), cornerRadius: CoreFoundation.CGFloat = 10, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true, darkMode: Swift.Bool = false)
   @objc public init(objcPosition: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition, objcBackgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPBackgroundStyle, cornerRadius: CoreFoundation.CGFloat = 0, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true, darkMode: Swift.Bool = false)
   @_hasMissingDesignatedInitializers @objc public class CMPPosition : ObjectiveC.NSObject {
     @objc public static let fullScreen: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition
@@ -135,9 +136,7 @@ public enum BackgroundStyle {
       get
     }
   }
-  @objc public func requestTrackingAuthorization(completion: @escaping (cm_sdk_ios_v3.ATTManager.AuthorizationStatus) -> Swift.Void)
   @objc public func getTrackingAuthorizationStatus() -> cm_sdk_ios_v3.ATTManager.AuthorizationStatus
-  @objc public func getIDFA() -> Swift.String?
   @objc deinit
 }
 @objc public protocol CMPManagerDelegate {
@@ -148,7 +147,7 @@ public enum BackgroundStyle {
   @objc func didChangeATTStatus(oldStatus: Swift.Int, newStatus: Swift.Int, lastUpdated: Foundation.Date?)
 }
 @objcMembers @objc public class UrlConfig : ObjectiveC.NSObject {
-  @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String)
+  @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String, idfa: Swift.String? = nil)
   @objc deinit
 }
 @objc public enum UniqueConsentStatus : Swift.Int {
