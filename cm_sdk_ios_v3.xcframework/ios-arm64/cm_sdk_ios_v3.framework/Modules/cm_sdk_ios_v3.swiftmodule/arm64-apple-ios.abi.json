@@ -60,6 +60,34 @@
                     "accessorKind": "get"
                   }
                 ]
+              },
+              {
+                "kind": "Function",
+                "name": "getJavaScriptWithFontSize",
+                "printedName": "getJavaScriptWithFontSize(_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:13cm_sdk_ios_v312CMPConstantsV10JavaScriptV03getfG12WithFontSizeySSSiFZ",
+                "mangledName": "$s13cm_sdk_ios_v312CMPConstantsV10JavaScriptV03getfG12WithFontSizeySSSiFZ",
+                "moduleName": "cm_sdk_ios_v3",
+                "static": true,
+                "declAttributes": [
+                  "AccessControl"
+                ],
+                "funcSelfKind": "NonMutating"
               }
             ],
             "declKind": "Struct",
@@ -134,16 +162,6 @@
       },
       {
         "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "cm_sdk_ios_v3",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "Import",
         "name": "UIKit",
         "printedName": "UIKit",
         "declKind": "Import",
@@ -173,13 +191,6 @@
         "kind": "Import",
         "name": "WebKit",
         "printedName": "WebKit",
-        "declKind": "Import",
-        "moduleName": "cm_sdk_ios_v3"
-      },
-      {
-        "kind": "Import",
-        "name": "AppTrackingTransparency",
-        "printedName": "AppTrackingTransparency",
         "declKind": "Import",
         "moduleName": "cm_sdk_ios_v3"
       },
@@ -210,8 +221,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -262,8 +272,7 @@
               "HasStorage",
               "ReferenceOwnership",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "ownership": 1,
             "hasStorage": true,
@@ -389,8 +398,7 @@
             "moduleName": "cm_sdk_ios_v3",
             "declAttributes": [
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -411,8 +419,7 @@
             "moduleName": "cm_sdk_ios_v3",
             "declAttributes": [
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -440,8 +447,7 @@
             "objc_name": "setUrlConfig:",
             "declAttributes": [
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -469,8 +475,7 @@
             "objc_name": "setWebViewConfig:",
             "declAttributes": [
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -498,8 +503,7 @@
             "objc_name": "setPresentingViewController:",
             "declAttributes": [
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -558,8 +562,7 @@
             "objc_name": "getStatusForVendorWithId:",
             "declAttributes": [
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -617,8 +620,7 @@
             "moduleName": "cm_sdk_ios_v3",
             "declAttributes": [
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -640,8 +642,7 @@
             "moduleName": "cm_sdk_ios_v3",
             "declAttributes": [
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -749,8 +750,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -782,7 +782,6 @@
               "Dynamic",
               "AccessControl",
               "Available",
-              "RawDocComment",
               "ObjC"
             ],
             "isFromExtension": true,
@@ -841,10 +840,42 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "forceOpen",
+            "printedName": "forceOpen(jumpToSettings:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)forceOpenWithJumpToSettings:completionHandler:",
+            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC9forceOpen14jumpToSettingsySb_tYaKF",
+            "moduleName": "cm_sdk_ios_v3",
+            "intro_iOS": "13.0.0",
+            "declAttributes": [
+              "Dynamic",
+              "AccessControl",
+              "Available",
+              "ObjC"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
             "funcSelfKind": "NonMutating"
           },
           {
@@ -892,8 +923,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -956,8 +986,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1020,8 +1049,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1090,8 +1118,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1160,8 +1187,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1211,8 +1237,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1262,8 +1287,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1318,8 +1342,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1369,8 +1392,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1811,8 +1833,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1835,8 +1856,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1859,8 +1879,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1889,8 +1908,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -1935,8 +1953,7 @@
             "declAttributes": [
               "Dynamic",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -2048,8 +2065,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -2113,8 +2129,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -2192,8 +2207,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -2257,8 +2271,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -2308,8 +2321,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -2359,8 +2371,7 @@
               "Final",
               "HasStorage",
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "isLet": true,
             "hasStorage": true,
@@ -2424,7 +2435,6 @@
         "declAttributes": [
           "AccessControl",
           "ObjC",
-          "ObjCMembers",
           "RawDocComment"
         ],
         "superclassUsr": "c:objc(cs)NSObject",
@@ -2510,658 +2520,356 @@
       },
       {
         "kind": "TypeDecl",
-        "name": "ConsentLayerUIConfig",
-        "printedName": "ConsentLayerUIConfig",
+        "name": "Position",
+        "printedName": "Position",
         "children": [
           {
-            "kind": "TypeDecl",
-            "name": "Position",
-            "printedName": "Position",
+            "kind": "Var",
+            "name": "fullScreen",
+            "printedName": "fullScreen",
             "children": [
               {
-                "kind": "Var",
-                "name": "fullScreen",
-                "printedName": "fullScreen",
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(cm_sdk_ios_v3.Position.Type) -> cm_sdk_ios_v3.Position",
                 "children": [
                   {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(cm_sdk_ios_v3.ConsentLayerUIConfig.Position.Type) -> cm_sdk_ios_v3.ConsentLayerUIConfig.Position",
+                    "kind": "TypeNominal",
+                    "name": "Position",
+                    "printedName": "cm_sdk_ios_v3.Position",
+                    "usr": "s:13cm_sdk_ios_v38PositionO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "cm_sdk_ios_v3.Position.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "Position",
-                        "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.Position",
-                        "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.Position.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Position",
-                            "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.Position",
-                            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO"
-                          }
-                        ]
+                        "printedName": "cm_sdk_ios_v3.Position",
+                        "usr": "s:13cm_sdk_ios_v38PositionO"
                       }
                     ]
                   }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO10fullScreenyA2EmF",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO10fullScreenyA2EmF",
-                "moduleName": "cm_sdk_ios_v3"
-              },
-              {
-                "kind": "Var",
-                "name": "custom",
-                "printedName": "custom",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(cm_sdk_ios_v3.ConsentLayerUIConfig.Position.Type) -> (CoreFoundation.CGRect) -> cm_sdk_ios_v3.ConsentLayerUIConfig.Position",
-                    "children": [
-                      {
-                        "kind": "TypeFunc",
-                        "name": "Function",
-                        "printedName": "(CoreFoundation.CGRect) -> cm_sdk_ios_v3.ConsentLayerUIConfig.Position",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Position",
-                            "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.Position",
-                            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "CGRect",
-                            "printedName": "CoreFoundation.CGRect",
-                            "usr": "c:@S@CGRect"
-                          }
-                        ]
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.Position.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Position",
-                            "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.Position",
-                            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO6customyAESo6CGRectVcAEmF",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO6customyAESo6CGRectVcAEmF",
-                "moduleName": "cm_sdk_ios_v3"
+                ]
               }
             ],
-            "declKind": "Enum",
-            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO",
-            "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO",
-            "moduleName": "cm_sdk_ios_v3",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "conformances": [
-              {
-                "kind": "Conformance",
-                "name": "Copyable",
-                "printedName": "Copyable",
-                "usr": "s:s8CopyableP",
-                "mangledName": "$ss8CopyableP"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Escapable",
-                "printedName": "Escapable",
-                "usr": "s:s9EscapableP",
-                "mangledName": "$ss9EscapableP"
-              }
-            ]
+            "declKind": "EnumElement",
+            "usr": "s:13cm_sdk_ios_v38PositionO10fullScreenyA2CmF",
+            "mangledName": "$s13cm_sdk_ios_v38PositionO10fullScreenyA2CmF",
+            "moduleName": "cm_sdk_ios_v3"
           },
           {
-            "kind": "TypeDecl",
-            "name": "BackgroundStyle",
-            "printedName": "BackgroundStyle",
+            "kind": "Var",
+            "name": "custom",
+            "printedName": "custom",
             "children": [
               {
-                "kind": "Var",
-                "name": "dimmed",
-                "printedName": "dimmed",
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(cm_sdk_ios_v3.Position.Type) -> (CoreFoundation.CGRect) -> cm_sdk_ios_v3.Position",
                 "children": [
                   {
                     "kind": "TypeFunc",
                     "name": "Function",
-                    "printedName": "(cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle.Type) -> (UIKit.UIColor, CoreGraphics.CGFloat) -> cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
+                    "printedName": "(CoreFoundation.CGRect) -> cm_sdk_ios_v3.Position",
                     "children": [
                       {
-                        "kind": "TypeFunc",
-                        "name": "Function",
-                        "printedName": "(UIKit.UIColor, CoreGraphics.CGFloat) -> cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "BackgroundStyle",
-                            "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Tuple",
-                            "printedName": "(UIKit.UIColor, CoreGraphics.CGFloat)",
-                            "children": [
-                              {
-                                "kind": "TypeNominal",
-                                "name": "UIColor",
-                                "printedName": "UIKit.UIColor",
-                                "usr": "c:objc(cs)UIColor"
-                              },
-                              {
-                                "kind": "TypeNominal",
-                                "name": "CGFloat",
-                                "printedName": "CoreGraphics.CGFloat",
-                                "usr": "s:14CoreFoundation7CGFloatV"
-                              }
-                            ]
-                          }
-                        ]
+                        "kind": "TypeNominal",
+                        "name": "Position",
+                        "printedName": "cm_sdk_ios_v3.Position",
+                        "usr": "s:13cm_sdk_ios_v38PositionO"
                       },
                       {
                         "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "BackgroundStyle",
-                            "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
-                          }
-                        ]
+                        "name": "CGRect",
+                        "printedName": "CoreFoundation.CGRect",
+                        "usr": "c:@S@CGRect"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "cm_sdk_ios_v3.Position.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Position",
+                        "printedName": "cm_sdk_ios_v3.Position",
+                        "usr": "s:13cm_sdk_ios_v38PositionO"
                       }
                     ]
                   }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO6dimmedyAESo7UIColorC_14CoreFoundation7CGFloatVtcAEmF",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO6dimmedyAESo7UIColorC_12CoreGraphics7CGFloatVtcAEmF",
-                "moduleName": "cm_sdk_ios_v3"
-              },
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13cm_sdk_ios_v38PositionO6customyACSo6CGRectVcACmF",
+            "mangledName": "$s13cm_sdk_ios_v38PositionO6customyACSo6CGRectVcACmF",
+            "moduleName": "cm_sdk_ios_v3"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:13cm_sdk_ios_v38PositionO",
+        "mangledName": "$s13cm_sdk_ios_v38PositionO",
+        "moduleName": "cm_sdk_ios_v3",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "BackgroundStyle",
+        "printedName": "BackgroundStyle",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "dimmed",
+            "printedName": "dimmed",
+            "children": [
               {
-                "kind": "Var",
-                "name": "blur",
-                "printedName": "blur",
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(cm_sdk_ios_v3.BackgroundStyle.Type) -> (UIKit.UIColor, CoreGraphics.CGFloat) -> cm_sdk_ios_v3.BackgroundStyle",
                 "children": [
                   {
                     "kind": "TypeFunc",
                     "name": "Function",
-                    "printedName": "(cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle.Type) -> (UIKit.UIBlurEffect.Style) -> cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
+                    "printedName": "(UIKit.UIColor, CoreGraphics.CGFloat) -> cm_sdk_ios_v3.BackgroundStyle",
                     "children": [
                       {
-                        "kind": "TypeFunc",
-                        "name": "Function",
-                        "printedName": "(UIKit.UIBlurEffect.Style) -> cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "BackgroundStyle",
-                            "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Style",
-                            "printedName": "UIKit.UIBlurEffect.Style",
-                            "usr": "c:@E@UIBlurEffectStyle"
-                          }
-                        ]
+                        "kind": "TypeNominal",
+                        "name": "BackgroundStyle",
+                        "printedName": "cm_sdk_ios_v3.BackgroundStyle",
+                        "usr": "s:13cm_sdk_ios_v315BackgroundStyleO"
                       },
                       {
                         "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle.Type",
+                        "name": "Tuple",
+                        "printedName": "(UIKit.UIColor, CoreGraphics.CGFloat)",
                         "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "BackgroundStyle",
-                            "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO4bluryAESo012UIBlurEffectI0VcAEmF",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO4bluryAESo012UIBlurEffectI0VcAEmF",
-                "moduleName": "cm_sdk_ios_v3"
-              },
-              {
-                "kind": "Var",
-                "name": "color",
-                "printedName": "color",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle.Type) -> (UIKit.UIColor) -> cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                    "children": [
-                      {
-                        "kind": "TypeFunc",
-                        "name": "Function",
-                        "printedName": "(UIKit.UIColor) -> cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "BackgroundStyle",
-                            "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
-                          },
                           {
                             "kind": "TypeNominal",
                             "name": "UIColor",
                             "printedName": "UIKit.UIColor",
                             "usr": "c:objc(cs)UIColor"
-                          }
-                        ]
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle.Type",
-                        "children": [
+                          },
                           {
                             "kind": "TypeNominal",
-                            "name": "BackgroundStyle",
-                            "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
+                            "name": "CGFloat",
+                            "printedName": "CoreGraphics.CGFloat",
+                            "usr": "s:14CoreFoundation7CGFloatV"
                           }
                         ]
                       }
                     ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO5coloryAESo7UIColorCcAEmF",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO5coloryAESo7UIColorCcAEmF",
-                "moduleName": "cm_sdk_ios_v3"
-              },
-              {
-                "kind": "Var",
-                "name": "none",
-                "printedName": "none",
-                "children": [
+                  },
                   {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle.Type) -> cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "cm_sdk_ios_v3.BackgroundStyle.Type",
                     "children": [
                       {
                         "kind": "TypeNominal",
                         "name": "BackgroundStyle",
-                        "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                        "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "BackgroundStyle",
-                            "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
-                          }
-                        ]
+                        "printedName": "cm_sdk_ios_v3.BackgroundStyle",
+                        "usr": "s:13cm_sdk_ios_v315BackgroundStyleO"
                       }
                     ]
                   }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO4noneyA2EmF",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO4noneyA2EmF",
-                "moduleName": "cm_sdk_ios_v3"
+                ]
               }
             ],
-            "declKind": "Enum",
-            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO",
-            "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO",
-            "moduleName": "cm_sdk_ios_v3",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "conformances": [
-              {
-                "kind": "Conformance",
-                "name": "Copyable",
-                "printedName": "Copyable",
-                "usr": "s:s8CopyableP",
-                "mangledName": "$ss8CopyableP"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Escapable",
-                "printedName": "Escapable",
-                "usr": "s:s9EscapableP",
-                "mangledName": "$ss9EscapableP"
-              }
-            ]
+            "declKind": "EnumElement",
+            "usr": "s:13cm_sdk_ios_v315BackgroundStyleO6dimmedyACSo7UIColorC_14CoreFoundation7CGFloatVtcACmF",
+            "mangledName": "$s13cm_sdk_ios_v315BackgroundStyleO6dimmedyACSo7UIColorC_12CoreGraphics7CGFloatVtcACmF",
+            "moduleName": "cm_sdk_ios_v3"
           },
           {
             "kind": "Var",
-            "name": "position",
-            "printedName": "position",
+            "name": "blur",
+            "printedName": "blur",
             "children": [
               {
-                "kind": "TypeNominal",
-                "name": "Position",
-                "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.Position",
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8positionAC8PositionOvp",
-            "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC8positionAC8PositionOvp",
-            "moduleName": "cm_sdk_ios_v3",
-            "declAttributes": [
-              "Final",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(cm_sdk_ios_v3.BackgroundStyle.Type) -> (UIKit.UIBlurEffect.Style) -> cm_sdk_ios_v3.BackgroundStyle",
                 "children": [
                   {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(UIKit.UIBlurEffect.Style) -> cm_sdk_ios_v3.BackgroundStyle",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "BackgroundStyle",
+                        "printedName": "cm_sdk_ios_v3.BackgroundStyle",
+                        "usr": "s:13cm_sdk_ios_v315BackgroundStyleO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Style",
+                        "printedName": "UIKit.UIBlurEffect.Style",
+                        "usr": "c:@E@UIBlurEffectStyle"
+                      }
+                    ]
+                  },
+                  {
                     "kind": "TypeNominal",
-                    "name": "Position",
-                    "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.Position",
-                    "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO"
+                    "name": "Metatype",
+                    "printedName": "cm_sdk_ios_v3.BackgroundStyle.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "BackgroundStyle",
+                        "printedName": "cm_sdk_ios_v3.BackgroundStyle",
+                        "usr": "s:13cm_sdk_ios_v315BackgroundStyleO"
+                      }
+                    ]
                   }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8positionAC8PositionOvg",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC8positionAC8PositionOvg",
-                "moduleName": "cm_sdk_ios_v3",
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "get"
+                ]
               }
-            ]
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13cm_sdk_ios_v315BackgroundStyleO4bluryACSo012UIBlurEffectF0VcACmF",
+            "mangledName": "$s13cm_sdk_ios_v315BackgroundStyleO4bluryACSo012UIBlurEffectF0VcACmF",
+            "moduleName": "cm_sdk_ios_v3"
           },
           {
             "kind": "Var",
-            "name": "backgroundStyle",
-            "printedName": "backgroundStyle",
+            "name": "color",
+            "printedName": "color",
             "children": [
               {
-                "kind": "TypeNominal",
-                "name": "BackgroundStyle",
-                "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(cm_sdk_ios_v3.BackgroundStyle.Type) -> (UIKit.UIColor) -> cm_sdk_ios_v3.BackgroundStyle",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(UIKit.UIColor) -> cm_sdk_ios_v3.BackgroundStyle",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "BackgroundStyle",
+                        "printedName": "cm_sdk_ios_v3.BackgroundStyle",
+                        "usr": "s:13cm_sdk_ios_v315BackgroundStyleO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UIColor",
+                        "printedName": "UIKit.UIColor",
+                        "usr": "c:objc(cs)UIColor"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "cm_sdk_ios_v3.BackgroundStyle.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "BackgroundStyle",
+                        "printedName": "cm_sdk_ios_v3.BackgroundStyle",
+                        "usr": "s:13cm_sdk_ios_v315BackgroundStyleO"
+                      }
+                    ]
+                  }
+                ]
               }
             ],
-            "declKind": "Var",
-            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15backgroundStyleAC010BackgroundI0Ovp",
-            "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC15backgroundStyleAC010BackgroundI0Ovp",
-            "moduleName": "cm_sdk_ios_v3",
-            "declAttributes": [
-              "Final",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
+            "declKind": "EnumElement",
+            "usr": "s:13cm_sdk_ios_v315BackgroundStyleO5coloryACSo7UIColorCcACmF",
+            "mangledName": "$s13cm_sdk_ios_v315BackgroundStyleO5coloryACSo7UIColorCcACmF",
+            "moduleName": "cm_sdk_ios_v3"
+          },
+          {
+            "kind": "Var",
+            "name": "none",
+            "printedName": "none",
+            "children": [
               {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(cm_sdk_ios_v3.BackgroundStyle.Type) -> cm_sdk_ios_v3.BackgroundStyle",
                 "children": [
                   {
                     "kind": "TypeNominal",
                     "name": "BackgroundStyle",
-                    "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
-                    "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15backgroundStyleAC010BackgroundI0Ovg",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC15backgroundStyleAC010BackgroundI0Ovg",
-                "moduleName": "cm_sdk_ios_v3",
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "cornerRadius",
-            "printedName": "cornerRadius",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "CGFloat",
-                "printedName": "CoreGraphics.CGFloat",
-                "usr": "s:14CoreFoundation7CGFloatV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)ConsentLayerUIConfig(py)cornerRadius",
-            "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC12cornerRadius12CoreGraphics7CGFloatVvp",
-            "moduleName": "cm_sdk_ios_v3",
-            "declAttributes": [
-              "Final",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment",
-              "ObjC"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
+                    "printedName": "cm_sdk_ios_v3.BackgroundStyle",
+                    "usr": "s:13cm_sdk_ios_v315BackgroundStyleO"
+                  },
                   {
                     "kind": "TypeNominal",
-                    "name": "CGFloat",
-                    "printedName": "CoreGraphics.CGFloat",
-                    "usr": "s:14CoreFoundation7CGFloatV"
+                    "name": "Metatype",
+                    "printedName": "cm_sdk_ios_v3.BackgroundStyle.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "BackgroundStyle",
+                        "printedName": "cm_sdk_ios_v3.BackgroundStyle",
+                        "usr": "s:13cm_sdk_ios_v315BackgroundStyleO"
+                      }
+                    ]
                   }
-                ],
-                "declKind": "Accessor",
-                "usr": "c:@M@cm_sdk_ios_v3@objc(cs)ConsentLayerUIConfig(im)cornerRadius",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC12cornerRadius12CoreGraphics7CGFloatVvg",
-                "moduleName": "cm_sdk_ios_v3",
-                "implicit": true,
-                "declAttributes": [
-                  "Final",
-                  "ObjC"
-                ],
-                "accessorKind": "get"
+                ]
               }
-            ]
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:13cm_sdk_ios_v315BackgroundStyleO4noneyA2CmF",
+            "mangledName": "$s13cm_sdk_ios_v315BackgroundStyleO4noneyA2CmF",
+            "moduleName": "cm_sdk_ios_v3"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:13cm_sdk_ios_v315BackgroundStyleO",
+        "mangledName": "$s13cm_sdk_ios_v315BackgroundStyleO",
+        "moduleName": "cm_sdk_ios_v3",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
           },
           {
-            "kind": "Var",
-            "name": "respectsSafeArea",
-            "printedName": "respectsSafeArea",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)ConsentLayerUIConfig(py)respectsSafeArea",
-            "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC16respectsSafeAreaSbvp",
-            "moduleName": "cm_sdk_ios_v3",
-            "declAttributes": [
-              "Final",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment",
-              "ObjC"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "c:@M@cm_sdk_ios_v3@objc(cs)ConsentLayerUIConfig(im)respectsSafeArea",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC16respectsSafeAreaSbvg",
-                "moduleName": "cm_sdk_ios_v3",
-                "implicit": true,
-                "declAttributes": [
-                  "Final",
-                  "ObjC"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "allowsOrientationChanges",
-            "printedName": "allowsOrientationChanges",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)ConsentLayerUIConfig(py)allowsOrientationChanges",
-            "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC24allowsOrientationChangesSbvp",
-            "moduleName": "cm_sdk_ios_v3",
-            "declAttributes": [
-              "Final",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment",
-              "ObjC"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "c:@M@cm_sdk_ios_v3@objc(cs)ConsentLayerUIConfig(im)allowsOrientationChanges",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC24allowsOrientationChangesSbvg",
-                "moduleName": "cm_sdk_ios_v3",
-                "implicit": true,
-                "declAttributes": [
-                  "Final",
-                  "ObjC"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "darkMode",
-            "printedName": "darkMode",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)ConsentLayerUIConfig(py)darkMode",
-            "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC8darkModeSbvp",
-            "moduleName": "cm_sdk_ios_v3",
-            "declAttributes": [
-              "Final",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment",
-              "ObjC"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "c:@M@cm_sdk_ios_v3@objc(cs)ConsentLayerUIConfig(im)darkMode",
-                "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC8darkModeSbvg",
-                "moduleName": "cm_sdk_ios_v3",
-                "implicit": true,
-                "declAttributes": [
-                  "Final",
-                  "ObjC"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ConsentLayerUIConfig",
+        "printedName": "ConsentLayerUIConfig",
+        "children": [
           {
             "kind": "Constructor",
             "name": "init",
@@ -3176,16 +2884,16 @@
               {
                 "kind": "TypeNominal",
                 "name": "Position",
-                "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.Position",
+                "printedName": "cm_sdk_ios_v3.Position",
                 "hasDefaultArg": true,
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8PositionO"
+                "usr": "s:13cm_sdk_ios_v38PositionO"
               },
               {
                 "kind": "TypeNominal",
                 "name": "BackgroundStyle",
-                "printedName": "cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle",
+                "printedName": "cm_sdk_ios_v3.BackgroundStyle",
                 "hasDefaultArg": true,
-                "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC15BackgroundStyleO"
+                "usr": "s:13cm_sdk_ios_v315BackgroundStyleO"
               },
               {
                 "kind": "TypeNominal",
@@ -3217,12 +2925,11 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8position15backgroundStyle12cornerRadius16respectsSafeArea24allowsOrientationChanges8darkModeA2C8PositionO_AC010BackgroundJ0O14CoreFoundation7CGFloatVS3btcfc",
-            "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC8position15backgroundStyle12cornerRadius16respectsSafeArea24allowsOrientationChanges8darkModeA2C8PositionO_AC010BackgroundJ0O12CoreGraphics7CGFloatVS3btcfc",
+            "usr": "s:13cm_sdk_ios_v320ConsentLayerUIConfigC8position15backgroundStyle12cornerRadius16respectsSafeArea24allowsOrientationChanges8darkModeAcA8PositionO_AA010BackgroundJ0O14CoreFoundation7CGFloatVS3btcfc",
+            "mangledName": "$s13cm_sdk_ios_v320ConsentLayerUIConfigC8position15backgroundStyle12cornerRadius16respectsSafeArea24allowsOrientationChanges8darkModeAcA8PositionO_AA010BackgroundJ0O12CoreGraphics7CGFloatVS3btcfc",
             "moduleName": "cm_sdk_ios_v3",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "init_kind": "Designated"
           },
@@ -3285,8 +2992,7 @@
             "objc_name": "initWithObjcPosition:objcBackgroundStyle:cornerRadius:respectsSafeArea:allowsOrientationChanges:darkMode:",
             "declAttributes": [
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "init_kind": "Designated"
           },
@@ -3524,8 +3230,7 @@
                 "declAttributes": [
                   "Final",
                   "AccessControl",
-                  "ObjC",
-                  "RawDocComment"
+                  "ObjC"
                 ],
                 "funcSelfKind": "NonMutating"
               },
@@ -3556,8 +3261,7 @@
                 "declAttributes": [
                   "Final",
                   "AccessControl",
-                  "ObjC",
-                  "RawDocComment"
+                  "ObjC"
                 ],
                 "funcSelfKind": "NonMutating"
               },
@@ -3587,8 +3291,7 @@
                 "declAttributes": [
                   "Final",
                   "AccessControl",
-                  "ObjC",
-                  "RawDocComment"
+                  "ObjC"
                 ],
                 "funcSelfKind": "NonMutating"
               },
@@ -3614,8 +3317,7 @@
                   "Final",
                   "HasStorage",
                   "AccessControl",
-                  "ObjC",
-                  "RawDocComment"
+                  "ObjC"
                 ],
                 "isLet": true,
                 "hasStorage": true,
@@ -3679,8 +3381,7 @@
             "moduleName": "cm_sdk_ios_v3",
             "declAttributes": [
               "AccessControl",
-              "ObjC",
-              "RawDocComment"
+              "ObjC"
             ],
             "superclassUsr": "c:objc(cs)NSObject",
             "hasMissingDesignatedInitializers": true,
@@ -3861,427 +3562,6 @@
       },
       {
         "kind": "Import",
-        "name": "AppTrackingTransparency",
-        "printedName": "AppTrackingTransparency",
-        "declKind": "Import",
-        "moduleName": "cm_sdk_ios_v3",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "ATTManager",
-        "printedName": "ATTManager",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "shared",
-            "printedName": "shared",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "ATTManager",
-                "printedName": "cm_sdk_ios_v3.ATTManager",
-                "usr": "s:13cm_sdk_ios_v310ATTManagerC"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:13cm_sdk_ios_v310ATTManagerC6sharedACvpZ",
-            "mangledName": "$s13cm_sdk_ios_v310ATTManagerC6sharedACvpZ",
-            "moduleName": "cm_sdk_ios_v3",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "Final",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "ATTManager",
-                    "printedName": "cm_sdk_ios_v3.ATTManager",
-                    "usr": "s:13cm_sdk_ios_v310ATTManagerC"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:13cm_sdk_ios_v310ATTManagerC6sharedACvgZ",
-                "mangledName": "$s13cm_sdk_ios_v310ATTManagerC6sharedACvgZ",
-                "moduleName": "cm_sdk_ios_v3",
-                "static": true,
-                "implicit": true,
-                "declAttributes": [
-                  "Final"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "TypeDecl",
-            "name": "AuthorizationStatus",
-            "printedName": "AuthorizationStatus",
-            "children": [
-              {
-                "kind": "Var",
-                "name": "notDetermined",
-                "printedName": "notDetermined",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(cm_sdk_ios_v3.ATTManager.AuthorizationStatus.Type) -> cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "AuthorizationStatus",
-                        "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                        "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "AuthorizationStatus",
-                            "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                            "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO13notDeterminedyA2EmF",
-                "mangledName": "$s13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO13notDeterminedyA2EmF",
-                "moduleName": "cm_sdk_ios_v3",
-                "declAttributes": [
-                  "ObjC"
-                ],
-                "fixedbinaryorder": 0
-              },
-              {
-                "kind": "Var",
-                "name": "restricted",
-                "printedName": "restricted",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(cm_sdk_ios_v3.ATTManager.AuthorizationStatus.Type) -> cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "AuthorizationStatus",
-                        "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                        "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "AuthorizationStatus",
-                            "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                            "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO10restrictedyA2EmF",
-                "mangledName": "$s13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO10restrictedyA2EmF",
-                "moduleName": "cm_sdk_ios_v3",
-                "declAttributes": [
-                  "ObjC"
-                ],
-                "fixedbinaryorder": 1
-              },
-              {
-                "kind": "Var",
-                "name": "denied",
-                "printedName": "denied",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(cm_sdk_ios_v3.ATTManager.AuthorizationStatus.Type) -> cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "AuthorizationStatus",
-                        "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                        "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "AuthorizationStatus",
-                            "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                            "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO6deniedyA2EmF",
-                "mangledName": "$s13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO6deniedyA2EmF",
-                "moduleName": "cm_sdk_ios_v3",
-                "declAttributes": [
-                  "ObjC"
-                ],
-                "fixedbinaryorder": 2
-              },
-              {
-                "kind": "Var",
-                "name": "authorized",
-                "printedName": "authorized",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(cm_sdk_ios_v3.ATTManager.AuthorizationStatus.Type) -> cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "AuthorizationStatus",
-                        "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                        "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Metatype",
-                        "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus.Type",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "AuthorizationStatus",
-                            "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                            "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "declKind": "EnumElement",
-                "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO10authorizedyA2EmF",
-                "mangledName": "$s13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO10authorizedyA2EmF",
-                "moduleName": "cm_sdk_ios_v3",
-                "declAttributes": [
-                  "ObjC"
-                ],
-                "fixedbinaryorder": 3
-              },
-              {
-                "kind": "Constructor",
-                "name": "init",
-                "printedName": "init(rawValue:)",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "AuthorizationStatus",
-                        "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                        "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
-                  }
-                ],
-                "declKind": "Constructor",
-                "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO8rawValueAESgSi_tcfc",
-                "mangledName": "$s13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO8rawValueAESgSi_tcfc",
-                "moduleName": "cm_sdk_ios_v3",
-                "implicit": true,
-                "init_kind": "Designated"
-              },
-              {
-                "kind": "Var",
-                "name": "rawValue",
-                "printedName": "rawValue",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
-                  }
-                ],
-                "declKind": "Var",
-                "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO8rawValueSivp",
-                "mangledName": "$s13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO8rawValueSivp",
-                "moduleName": "cm_sdk_ios_v3",
-                "implicit": true,
-                "accessors": [
-                  {
-                    "kind": "Accessor",
-                    "name": "Get",
-                    "printedName": "Get()",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      }
-                    ],
-                    "declKind": "Accessor",
-                    "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO8rawValueSivg",
-                    "mangledName": "$s13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO8rawValueSivg",
-                    "moduleName": "cm_sdk_ios_v3",
-                    "implicit": true,
-                    "accessorKind": "get"
-                  }
-                ]
-              }
-            ],
-            "declKind": "Enum",
-            "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO",
-            "mangledName": "$s13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO",
-            "moduleName": "cm_sdk_ios_v3",
-            "declAttributes": [
-              "AccessControl",
-              "ObjC"
-            ],
-            "enumRawTypeName": "Int",
-            "conformances": [
-              {
-                "kind": "Conformance",
-                "name": "Copyable",
-                "printedName": "Copyable",
-                "usr": "s:s8CopyableP",
-                "mangledName": "$ss8CopyableP"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Escapable",
-                "printedName": "Escapable",
-                "usr": "s:s9EscapableP",
-                "mangledName": "$ss9EscapableP"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Equatable",
-                "printedName": "Equatable",
-                "usr": "s:SQ",
-                "mangledName": "$sSQ"
-              },
-              {
-                "kind": "Conformance",
-                "name": "Hashable",
-                "printedName": "Hashable",
-                "usr": "s:SH",
-                "mangledName": "$sSH"
-              },
-              {
-                "kind": "Conformance",
-                "name": "RawRepresentable",
-                "printedName": "RawRepresentable",
-                "children": [
-                  {
-                    "kind": "TypeWitness",
-                    "name": "RawValue",
-                    "printedName": "RawValue",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Int",
-                        "printedName": "Swift.Int",
-                        "usr": "s:Si"
-                      }
-                    ]
-                  }
-                ],
-                "usr": "s:SY",
-                "mangledName": "$sSY"
-              }
-            ]
-          },
-          {
-            "kind": "Function",
-            "name": "getTrackingAuthorizationStatus",
-            "printedName": "getTrackingAuthorizationStatus()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "AuthorizationStatus",
-                "printedName": "cm_sdk_ios_v3.ATTManager.AuthorizationStatus",
-                "usr": "s:13cm_sdk_ios_v310ATTManagerC19AuthorizationStatusO"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:13cm_sdk_ios_v310ATTManagerC30getTrackingAuthorizationStatusAC0hI0OyF",
-            "mangledName": "$s13cm_sdk_ios_v310ATTManagerC30getTrackingAuthorizationStatusAC0hI0OyF",
-            "moduleName": "cm_sdk_ios_v3",
-            "declAttributes": [
-              "AccessControl",
-              "ObjC"
-            ],
-            "funcSelfKind": "NonMutating"
-          }
-        ],
-        "declKind": "Class",
-        "usr": "s:13cm_sdk_ios_v310ATTManagerC",
-        "mangledName": "$s13cm_sdk_ios_v310ATTManagerC",
-        "moduleName": "cm_sdk_ios_v3",
-        "intro_iOS": "14",
-        "declAttributes": [
-          "AccessControl",
-          "Available",
-          "ObjCMembers"
-        ],
-        "hasMissingDesignatedInitializers": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          }
-        ]
-      },
-      {
-        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -4421,56 +3701,6 @@
             ],
             "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "didChangeATTStatus",
-            "printedName": "didChangeATTStatus(oldStatus:newStatus:lastUpdated:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Int",
-                "printedName": "Swift.Int",
-                "usr": "s:Si"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Int",
-                "printedName": "Swift.Int",
-                "usr": "s:Si"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Foundation.Date?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Date",
-                    "printedName": "Foundation.Date",
-                    "usr": "s:10Foundation4DateV"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@M@cm_sdk_ios_v3@objc(pl)CMPManagerDelegate(im)didChangeATTStatusWithOldStatus:newStatus:lastUpdated:",
-            "mangledName": "$s13cm_sdk_ios_v318CMPManagerDelegateP18didChangeATTStatus9oldStatus03newK011lastUpdatedySi_Si10Foundation4DateVSgtF",
-            "moduleName": "cm_sdk_ios_v3",
-            "genericSig": "<τ_0_0 where τ_0_0 : cm_sdk_ios_v3.CMPManagerDelegate>",
-            "sugared_genericSig": "<Self where Self : cm_sdk_ios_v3.CMPManagerDelegate>",
-            "protocolReq": true,
-            "declAttributes": [
-              "ObjC"
-            ],
-            "reqNewWitnessTableEntry": true,
-            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Protocol",
@@ -4511,6 +3741,221 @@
         ]
       },
       {
+        "kind": "TypeDecl",
+        "name": "FirebaseConsentService",
+        "printedName": "FirebaseConsentService",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "shared",
+            "printedName": "shared",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FirebaseConsentService",
+                "printedName": "cm_sdk_ios_v3.FirebaseConsentService",
+                "usr": "c:@M@cm_sdk_ios_v3@objc(cs)FirebaseConsentService"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)FirebaseConsentService(cpy)shared",
+            "mangledName": "$s13cm_sdk_ios_v322FirebaseConsentServiceC6sharedACvpZ",
+            "moduleName": "cm_sdk_ios_v3",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FirebaseConsentService",
+                    "printedName": "cm_sdk_ios_v3.FirebaseConsentService",
+                    "usr": "c:@M@cm_sdk_ios_v3@objc(cs)FirebaseConsentService"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@cm_sdk_ios_v3@objc(cs)FirebaseConsentService(cm)shared",
+                "mangledName": "$s13cm_sdk_ios_v322FirebaseConsentServiceC6sharedACvgZ",
+                "moduleName": "cm_sdk_ios_v3",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "isFirebaseAnalyticsAvailable",
+            "printedName": "isFirebaseAnalyticsAvailable()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)FirebaseConsentService(im)isFirebaseAnalyticsAvailable",
+            "mangledName": "$s13cm_sdk_ios_v322FirebaseConsentServiceC02isE18AnalyticsAvailableSbyF",
+            "moduleName": "cm_sdk_ios_v3",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "updateFirebaseConsent",
+            "printedName": "updateFirebaseConsent(consentMode:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)FirebaseConsentService(im)updateFirebaseConsentWithConsentMode:",
+            "mangledName": "$s13cm_sdk_ios_v322FirebaseConsentServiceC06updateeF011consentModeySDyS2SG_tF",
+            "moduleName": "cm_sdk_ios_v3",
+            "objc_name": "updateFirebaseConsentWithConsentMode:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@cm_sdk_ios_v3@objc(cs)FirebaseConsentService",
+        "mangledName": "$s13cm_sdk_ios_v322FirebaseConsentServiceC",
+        "moduleName": "cm_sdk_ios_v3",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "hasMissingDesignatedInitializers": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "cm_sdk_ios_v3",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "Import",
         "name": "WebKit",
         "printedName": "WebKit",
@@ -4532,16 +3977,6 @@
         ]
       },
       {
-        "kind": "Import",
-        "name": "Network",
-        "printedName": "Network",
-        "declKind": "Import",
-        "moduleName": "cm_sdk_ios_v3",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
         "kind": "TypeDecl",
         "name": "UrlConfig",
         "printedName": "UrlConfig",
@@ -4549,7 +3984,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(id:domain:language:appName:idfa:)",
+            "printedName": "init(id:domain:language:appName:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -4580,30 +4015,14 @@
                 "name": "String",
                 "printedName": "Swift.String",
                 "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
               }
             ],
             "declKind": "Constructor",
-            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)UrlConfig(im)initWithId:domain:language:appName:idfa:",
-            "mangledName": "$s13cm_sdk_ios_v39UrlConfigC2id6domain8language7appName4idfaACSS_S4SSgtcfc",
+            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)UrlConfig(im)initWithId:domain:language:appName:",
+            "mangledName": "$s13cm_sdk_ios_v39UrlConfigC2id6domain8language7appNameACSS_S3Stcfc",
             "moduleName": "cm_sdk_ios_v3",
             "declAttributes": [
               "AccessControl",
-              "RawDocComment",
               "ObjC"
             ],
             "init_kind": "Designated"
@@ -5007,99 +4426,71 @@
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
       "offset": 218,
-      "length": 600,
-      "value": "\"(function() {\n    window.cmpToSDK_sendStatus = function(consent, jsonObject) {\n        jsonObject.cmpString = consent;\n        window.webkit.messageHandlers.consent.postMessage(jsonObject);\n    };\n\n    window.cmpToSDK_showConsentLayer = function(open) {\n        window.webkit.messageHandlers.open.postMessage(open);\n    };\n\n    window.onerror = function(error) {\n        window.webkit.messageHandlers.error.postMessage(error.toString());\n    };\n    \n    return null;\n})();\""
+      "length": 609,
+      "value": "\"(function() {\n\n    window.cmpToSDK_sendStatus = function(consent, jsonObject) {\n        jsonObject.cmpString = consent;\n        window.webkit.messageHandlers.consent.postMessage(jsonObject);\n    };\n\n    window.cmpToSDK_showConsentLayer = function(open) {\n        window.webkit.messageHandlers.open.postMessage(open);\n    };\n\n    window.onerror = function(error) {\n        window.webkit.messageHandlers.error.postMessage(error.toString());\n    };\n    \n    return null;\n})();\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 858,
+      "offset": 1755,
       "length": 7,
-      "value": "\"3.1.0\""
+      "value": "\"3.3.0\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 892,
+      "offset": 1789,
       "length": 5,
       "value": "\"ios\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 1160,
+      "offset": 2057,
       "length": 5,
       "value": "\"ios\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 1227,
+      "offset": 2124,
       "length": 12,
       "value": "\"sdkversion\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 1271,
-      "length": 10,
-      "value": "\"platform\""
+      "offset": 2168,
+      "length": 13,
+      "value": "\"cmpplatform\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 1313,
-      "length": 10,
-      "value": "\"darkmode\""
+      "offset": 2213,
+      "length": 13,
+      "value": "\"cmpdarkmode\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 1349,
+      "offset": 2252,
       "length": 7,
       "value": "\"tvsdk\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 1388,
+      "offset": 2291,
       "length": 7,
       "value": "\"appid\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 1421,
+      "offset": 2324,
       "length": 22,
       "value": "\"\/delivery\/appsdk\/v3\/\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/RetryManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 246,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/RetryManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 437,
-      "length": 1,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/RetryManager.swift",
-      "kind": "FloatLiteral",
-      "offset": 466,
-      "length": 3,
-      "value": "2.0"
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/RetryManager.swift",
-      "kind": "StringLiteral",
-      "offset": 542,
-      "length": 31,
-      "value": "\"com.consentmanager.retryQueue\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
@@ -5342,128 +4733,114 @@
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 970,
+      "offset": 800,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 1078,
+      "offset": 5520,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 7364,
+      "offset": 5992,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 8088,
+      "offset": 6428,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 8725,
+      "offset": 6887,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/ConsentLayerUIConfig.swift",
       "kind": "FloatLiteral",
-      "offset": 1675,
+      "offset": 700,
       "length": 3,
       "value": "0.5"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/ConsentLayerUIConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1713,
+      "offset": 738,
       "length": 2,
       "value": "10"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/ConsentLayerUIConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 1750,
+      "offset": 775,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/ConsentLayerUIConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 1797,
+      "offset": 822,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/ConsentLayerUIConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 1828,
+      "offset": 853,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/ConsentLayerUIConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 2843,
+      "offset": 1308,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/ConsentLayerUIConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 2879,
+      "offset": 1344,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/ConsentLayerUIConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 2926,
+      "offset": 1391,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/ConsentLayerUIConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 2957,
+      "offset": 1422,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/ATTManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 348,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/ATTManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 376,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/ATTManager.swift",
-      "kind": "IntegerLiteral",
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/FirebaseConsentService.swift",
+      "kind": "BooleanLiteral",
       "offset": 400,
-      "length": 1,
-      "value": "2"
+      "length": 5,
+      "value": "false"
     },
     {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/ATTManager.swift",
-      "kind": "IntegerLiteral",
-      "offset": 428,
-      "length": 1,
-      "value": "3"
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/FirebaseConsentService.swift",
+      "kind": "BooleanLiteral",
+      "offset": 444,
+      "length": 5,
+      "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/CMPUserPreferencesService.swift",
@@ -5558,57 +4935,50 @@
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1129,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 1156,
+      "offset": 1159,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 1302,
+      "offset": 1305,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/WebViewManager.swift",
       "kind": "StringLiteral",
-      "offset": 440,
+      "offset": 396,
       "length": 24,
       "value": "\"com.cmp.WebViewManager\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/WebViewManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 704,
+      "offset": 605,
       "length": 2,
       "value": "10"
     },
     {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/NetworkMonitor.swift",
-      "kind": "StringLiteral",
-      "offset": 358,
-      "length": 26,
-      "value": "\"com.networkmonitor.queue\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/NetworkMonitor.swift",
-      "kind": "BooleanLiteral",
-      "offset": 504,
-      "length": 5,
-      "value": "false"
-    },
-    {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel+Domain.swift",
       "kind": "IntegerLiteral",
-      "offset": 2350,
+      "offset": 2266,
       "length": 7,
       "value": "1"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel+Domain.swift",
       "kind": "IntegerLiteral",
-      "offset": 2367,
+      "offset": 2283,
       "length": 6,
       "value": "2"
     }

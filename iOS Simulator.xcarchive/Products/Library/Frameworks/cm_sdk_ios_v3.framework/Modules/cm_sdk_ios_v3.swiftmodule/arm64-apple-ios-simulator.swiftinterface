@@ -1,10 +1,8 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name cm_sdk_ios_v3
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
-import AppTrackingTransparency
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name cm_sdk_ios_v3
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import Foundation
-import Network
 import Swift
 import UIKit
 import WebKit
@@ -15,6 +13,7 @@ import _SwiftConcurrencyShims
 public struct CMPConstants {
   public struct JavaScript {
     public static let javascriptToExecute: Swift.String
+    public static func getJavaScriptWithFontSize(_ fontSize: Swift.Int) -> Swift.String
   }
 }
 public typealias LinkClickHandler = (Foundation.URL) -> Swift.Bool
@@ -40,6 +39,8 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc @available(iOS 13.0.0, *)
   dynamic public func checkAndOpen(jumpToSettings: Swift.Bool = false) async throws
   @objc dynamic public func forceOpen(jumpToSettings: Swift.Bool = false, completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc @available(iOS 13.0.0, *)
+  dynamic public func forceOpen(jumpToSettings: Swift.Bool = false) async throws
   @objc dynamic public func jumpToSettings(completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func acceptVendors(_ vendors: [Swift.String], completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func rejectVendors(_ vendors: [Swift.String], completion: @escaping (Foundation.NSError?) -> Swift.Void)
@@ -79,7 +80,7 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func didReceiveError(_ error: Swift.String)
   @objc dynamic public func getOnClickLinkCallback() -> cm_sdk_ios_v3.LinkClickHandler?
 }
-@_hasMissingDesignatedInitializers @objcMembers @objc public class CMPUserStatusResponse : ObjectiveC.NSObject {
+@_hasMissingDesignatedInitializers @objc public class CMPUserStatusResponse : ObjectiveC.NSObject {
   @objc final public let status: Swift.String
   @objc final public let vendors: [Swift.String : Swift.String]
   @objc final public let purposes: [Swift.String : Swift.String]
@@ -88,24 +89,18 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc final public let regulation: Swift.String
   @objc deinit
 }
+public enum Position {
+  case fullScreen
+  case custom(CoreFoundation.CGRect)
+}
+public enum BackgroundStyle {
+  case dimmed(UIKit.UIColor, CoreFoundation.CGFloat)
+  case blur(UIKit.UIBlurEffect.Style)
+  case color(UIKit.UIColor)
+  case none
+}
 @objc @objcMembers public class ConsentLayerUIConfig : ObjectiveC.NSObject {
-  public enum Position {
-    case fullScreen
-    case custom(CoreFoundation.CGRect)
-  }
-  public enum BackgroundStyle {
-    case dimmed(UIKit.UIColor, CoreFoundation.CGFloat)
-    case blur(UIKit.UIBlurEffect.Style)
-    case color(UIKit.UIColor)
-    case none
-  }
-  final public let position: cm_sdk_ios_v3.ConsentLayerUIConfig.Position
-  final public let backgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle
-  @objc final public let cornerRadius: CoreFoundation.CGFloat
-  @objc final public let respectsSafeArea: Swift.Bool
-  @objc final public let allowsOrientationChanges: Swift.Bool
-  @objc final public let darkMode: Swift.Bool
-  public init(position: cm_sdk_ios_v3.ConsentLayerUIConfig.Position = .fullScreen, backgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.BackgroundStyle = .dimmed(UIColor.black, 0.5), cornerRadius: CoreFoundation.CGFloat = 10, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true, darkMode: Swift.Bool = false)
+  public init(position: cm_sdk_ios_v3.Position = .fullScreen, backgroundStyle: cm_sdk_ios_v3.BackgroundStyle = .dimmed(.black, 0.5), cornerRadius: CoreFoundation.CGFloat = 10, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true, darkMode: Swift.Bool = false)
   @objc public init(objcPosition: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition, objcBackgroundStyle: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPBackgroundStyle, cornerRadius: CoreFoundation.CGFloat = 0, respectsSafeArea: Swift.Bool = true, allowsOrientationChanges: Swift.Bool = true, darkMode: Swift.Bool = false)
   @_hasMissingDesignatedInitializers @objc public class CMPPosition : ObjectiveC.NSObject {
     @objc public static let fullScreen: cm_sdk_ios_v3.ConsentLayerUIConfig.CMPPosition
@@ -121,33 +116,20 @@ extension cm_sdk_ios_v3.CMPManager {
   }
   @objc deinit
 }
-@_hasMissingDesignatedInitializers @available(iOS 14, *)
-@objcMembers public class ATTManager {
-  public static let shared: cm_sdk_ios_v3.ATTManager
-  @objc public enum AuthorizationStatus : Swift.Int {
-    case notDetermined = 0
-    case restricted = 1
-    case denied = 2
-    case authorized = 3
-    public init?(rawValue: Swift.Int)
-    @available(iOS 14, *)
-    public typealias RawValue = Swift.Int
-    public var rawValue: Swift.Int {
-      get
-    }
-  }
-  @objc public func getTrackingAuthorizationStatus() -> cm_sdk_ios_v3.ATTManager.AuthorizationStatus
-  @objc deinit
-}
 @objc public protocol CMPManagerDelegate {
   @objc func didReceiveConsent(consent: Swift.String, jsonObject: [Swift.String : Any])
   @objc func didShowConsentLayer()
   @objc func didCloseConsentLayer()
   @objc func didReceiveError(error: Swift.String)
-  @objc func didChangeATTStatus(oldStatus: Swift.Int, newStatus: Swift.Int, lastUpdated: Foundation.Date?)
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class FirebaseConsentService : ObjectiveC.NSObject {
+  @objc public static let shared: cm_sdk_ios_v3.FirebaseConsentService
+  @objc public func isFirebaseAnalyticsAvailable() -> Swift.Bool
+  @objc public func updateFirebaseConsent(consentMode: [Swift.String : Swift.String])
+  @objc deinit
 }
 @objcMembers @objc public class UrlConfig : ObjectiveC.NSObject {
-  @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String, idfa: Swift.String? = nil)
+  @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String)
   @objc deinit
 }
 @objc public enum UniqueConsentStatus : Swift.Int {
@@ -160,12 +142,6 @@ extension cm_sdk_ios_v3.CMPManager {
     get
   }
 }
-@available(iOS 14, *)
-extension cm_sdk_ios_v3.ATTManager.AuthorizationStatus : Swift.Equatable {}
-@available(iOS 14, *)
-extension cm_sdk_ios_v3.ATTManager.AuthorizationStatus : Swift.Hashable {}
-@available(iOS 14, *)
-extension cm_sdk_ios_v3.ATTManager.AuthorizationStatus : Swift.RawRepresentable {}
 extension cm_sdk_ios_v3.UniqueConsentStatus : Swift.Equatable {}
 extension cm_sdk_ios_v3.UniqueConsentStatus : Swift.Hashable {}
 extension cm_sdk_ios_v3.UniqueConsentStatus : Swift.RawRepresentable {}
