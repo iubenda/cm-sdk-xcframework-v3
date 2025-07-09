@@ -317,20 +317,158 @@ enum UniqueConsentStatus : NSInteger;
 @class CMPUserStatusResponse;
 SWIFT_CLASS("_TtC13cm_sdk_ios_v310CMPManager")
 @interface CMPManager : NSObject
+/// The shared singleton instance of CMPManager.
+/// Use this instance to access all consent management functionality.
+/// The instance is thread-safe and manages its own internal state.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPManager * _Nonnull shared;)
 + (CMPManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// The delegate that receives consent management events and updates.
+/// Set this delegate to receive notifications about consent layer events,
+/// consent updates, and error conditions.
 @property (nonatomic, weak) id <CMPManagerDelegate> _Nullable delegate;
-- (void)setLinkClickHandler:(BOOL (^ _Nonnull)(NSURL * _Nonnull))handler;
-- (void)removeLinkClickHandler;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+/// Sets a custom handler for link clicks within the consent layer.
+/// Use this to intercept and handle external links in the consent layer,
+/// such as privacy policy or terms of service links.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.setLinkClickHandler { url in
+///     if url.host == "external-site.com" {
+///         // Open in external browser instead of consent layer
+///         UIApplication.shared.open(url)
+///         return true // Prevent default navigation
+///     }
+///     return false // Allow default navigation
+/// }
+///
+/// \endcode\param handler Closure that receives the URL and returns <code>true</code> to prevent navigation
+///
+- (void)setLinkClickHandler:(BOOL (^ _Nonnull)(NSURL * _Nonnull))handler;
+/// Removes the custom link click handler.
+/// After calling this method, all links will use default navigation behavior.
+- (void)removeLinkClickHandler;
+/// Configures the URL parameters for consent management requests.
+/// This method must be called before any consent operations to establish
+/// connection with your CMP service configuration.
+/// <h2>Example</h2>
+/// \code
+/// let config = UrlConfig(
+///     id: "26cba6cf81e76",
+///     domain: "delivery.consentmanager.net",
+///     language: "EN",
+///     appName: "MyApp"
+/// )
+/// CMPManager.shared.setUrlConfig(config)
+///
+/// \endcode\param config The URL configuration containing domain, ID, language, and app name
+///
 - (void)setUrlConfig:(UrlConfig * _Nonnull)config;
+/// Configures the visual appearance and behavior of the consent layer.
+/// Customize how the consent layer appears to users, including positioning,
+/// background styling, corner radius, and interaction behavior.
+/// <h2>Example</h2>
+/// \code
+/// let uiConfig = ConsentLayerUIConfig(
+///     position: .fullScreen,
+///     backgroundStyle: .dimmed(.black, 0.5),
+///     cornerRadius: 10,
+///     darkMode: false
+/// )
+/// CMPManager.shared.setWebViewConfig(uiConfig)
+///
+/// \endcode\param config The UI configuration for positioning, styling, and interaction behavior
+///
 - (void)setWebViewConfig:(ConsentLayerUIConfig * _Nonnull)config;
+/// Sets the view controller that will present the consent layer.
+/// The consent layer will be presented modally over this view controller
+/// when consent collection is required.
+/// important:
+/// This must be set before calling any methods that might show the consent layer.
+/// \param viewController The presenting view controller
+///
 - (void)setPresentingViewController:(UIViewController * _Nonnull)viewController;
+/// Gets the consent status for a specific purpose.
+/// Purposes represent different types of data processing activities
+/// (e.g., analytics, advertising, functional cookies).
+/// <h2>Example</h2>
+/// \code
+/// let status = CMPManager.shared.getStatusForPurpose(id: "1")
+/// switch status {
+/// case .granted:
+///     // Enable analytics
+/// case .denied:
+///     // Disable analytics
+/// case .choiceDoesntExist:
+///     // No consent choice made yet
+/// }
+///
+/// \endcode\param id The purpose identifier (e.g., “1”, “2”, “analytics”)
+///
+///
+/// returns:
+/// The consent status for this purpose
 - (enum UniqueConsentStatus)getStatusForPurposeWithId:(NSString * _Nonnull)id SWIFT_WARN_UNUSED_RESULT;
+/// Gets the consent status for a specific vendor.
+/// Vendors are third-party companies that process user data.
+/// Each vendor has an identifier in your CMP configuration.
+/// <h2>Example</h2>
+/// \code
+/// let status = CMPManager.shared.getStatusForVendor(id: "s2723")
+/// if status == .granted {
+///     // Initialize vendor SDK
+/// }
+///
+/// \endcode\param id The vendor identifier (e.g., “s2723”, “google”)
+///
+///
+/// returns:
+/// The consent status for this vendor
 - (enum UniqueConsentStatus)getStatusForVendorWithId:(NSString * _Nonnull)id SWIFT_WARN_UNUSED_RESULT;
+/// Retrieves the current Google Consent Mode status for all consent types.
+/// Returns consent status in Google Consent Mode v2 format, compatible
+/// with Google Analytics, Google Ads, and other Google services.
+/// <h2>Example</h2>
+/// \code
+/// let consentMode = CMPManager.shared.getGoogleConsentModeStatus()
+/// print("Analytics storage: \(consentMode["analytics_storage"] ?? "denied")")
+/// print("Ad storage: \(consentMode["ad_storage"] ?? "denied")")
+///
+/// \endcode
+/// returns:
+/// Dictionary mapping consent types to their current status
+/// Keys: “analytics_storage”, “ad_storage”, “ad_user_data”, “ad_personalization”
+/// Values: “granted” or “denied”
 - (NSDictionary<NSString *, NSString *> * _Nonnull)getGoogleConsentModeStatus SWIFT_WARN_UNUSED_RESULT;
+/// Exports the current CMP consent string.
+/// The consent string contains encoded consent information that can be
+/// shared with other systems or stored for backup purposes.
+/// <h2>Example</h2>
+/// \code
+/// let consentString = CMPManager.shared.exportCMPInfo()
+/// if !consentString.isEmpty {
+///     // Store or share consent string
+///     UserDefaults.standard.set(consentString, forKey: "backup_consent")
+/// }
+///
+/// \endcode
+/// returns:
+/// The consent string, or empty string if no consent exists
 - (NSString * _Nonnull)exportCMPInfo SWIFT_WARN_UNUSED_RESULT;
+/// Gets comprehensive user status including all vendors, purposes, and consent strings.
+/// This method returns complete information about the user’s consent state,
+/// including detailed breakdowns by vendor and purpose.
+/// <h2>Example</h2>
+/// \code
+/// let userStatus = CMPManager.shared.getUserStatus()
+/// print("Overall status: \(userStatus.status)")
+/// print("TCF string: \(userStatus.tcf)")
+/// print("Vendor consents: \(userStatus.vendors)")
+/// print("Purpose consents: \(userStatus.purposes)")
+///
+/// \endcode
+/// returns:
+/// Complete user status response object containing all consent information
 - (CMPUserStatusResponse * _Nonnull)getUserStatus SWIFT_WARN_UNUSED_RESULT;
 @end
 
@@ -342,22 +480,206 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPManager *
 - (BOOL (^ _Nullable)(NSURL * _Nonnull))getOnClickLinkCallback SWIFT_WARN_UNUSED_RESULT;
 @end
 
+@interface CMPManager (SWIFT_EXTENSION(cm_sdk_ios_v3))
+/// Configure automatic Firebase consent updates before SDK initialization
+/// Call this BEFORE any CMP operations for guaranteed timing control
+/// \param enabled true to enable automatic updates, false to disable
+///
++ (void)configureAutomaticFirebaseConsentUpdates:(BOOL)enabled;
+/// Enables or disables automatic Firebase consent updates (instance method)
+/// \param enabled true to enable automatic updates, false to disable
+///
+- (void)setAutomaticFirebaseConsentUpdatesEnabled:(BOOL)enabled;
+/// Returns whether automatic Firebase consent updates are enabled
+///
+/// returns:
+/// true if automatic updates are enabled, false otherwise
+- (BOOL)isAutomaticFirebaseConsentUpdatesEnabled SWIFT_WARN_UNUSED_RESULT;
+/// Manually update Firebase consent (bypasses automatic setting)
+///
+/// returns:
+/// true if Firebase Analytics is available and update was attempted, false otherwise
+- (BOOL)updateFirebaseConsent SWIFT_WARN_UNUSED_RESULT;
+/// Check if Firebase Analytics is available in the app
+///
+/// returns:
+/// true if Firebase Analytics is linked and available, false otherwise
+- (BOOL)isFirebaseAnalyticsAvailable SWIFT_WARN_UNUSED_RESULT;
+@end
+
 @class NSError;
 @interface CMPManager (SWIFT_EXTENSION(cm_sdk_ios_v3))
-- (void)checkWithServerAndOpenIfNecessaryWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion SWIFT_DEPRECATED_MSG("Use checkAndOpen(jumpToSettings:completion:) instead");
+/// Checks consent status with the server and opens the consent layer if necessary.
+/// This method performs an intelligent check: if the user already has valid consent,
+/// no UI is shown. If consent is required, the consent layer opens automatically.
+/// This is typically called during app initialization.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.checkAndOpen { error in
+///     if let error = error {
+///         print("Consent check failed: \(error)")
+///     } else {
+///         print("Consent check completed successfully")
+///     }
+/// }
+///
+/// \endcode\param jumpToSettings If <code>true</code> and the consent layer opens, jumps directly to the settings page
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)checkAndOpenWithJumpToSettings:(BOOL)jumpToSettings completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Checks consent status with the server and opens the consent layer if necessary.
+/// Async version of <code>checkAndOpen(jumpToSettings:completion:)</code> for modern Swift concurrency.
+/// <h2>Example</h2>
+/// \code
+/// do {
+///     try await CMPManager.shared.checkAndOpen()
+///     print("Consent check completed successfully")
+/// } catch {
+///     print("Consent check failed: \(error)")
+/// }
+///
+/// \endcode\param jumpToSettings If <code>true</code> and the consent layer opens, jumps directly to the settings page
+///
+///
+/// throws:
+/// Any error that occurred during the operation
 - (void)checkAndOpenWithJumpToSettings:(BOOL)jumpToSettings completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler SWIFT_AVAILABILITY(ios,introduced=13.0.0);
+/// Forces the consent layer to open regardless of current consent status.
+/// Use this method when you want to allow users to review or modify their
+/// consent choices, even if they have already provided valid consent.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.forceOpen { error in
+///     if let error = error {
+///         print("Failed to open consent layer: \(error)")
+///     }
+/// }
+///
+/// \endcode\param jumpToSettings If <code>true</code>, opens directly to the settings page instead of the main consent page
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)forceOpenWithJumpToSettings:(BOOL)jumpToSettings completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Forces the consent layer to open regardless of current consent status.
+/// Async version of <code>forceOpen(jumpToSettings:completion:)</code> for modern Swift concurrency.
+/// \param jumpToSettings If <code>true</code>, opens directly to the settings page instead of the main consent page
+///
+///
+/// throws:
+/// Any error that occurred during the operation
 - (void)forceOpenWithJumpToSettings:(BOOL)jumpToSettings completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler SWIFT_AVAILABILITY(ios,introduced=13.0.0);
-- (void)jumpToSettingsWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Programmatically accepts consent for specific vendors.
+/// This method updates consent server-side and locally without showing UI.
+/// Use when your app needs to programmatically manage consent based on user actions.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.acceptVendors(["s2723", "google"]) { error in
+///     if let error = error {
+///         print("Failed to accept vendors: \(error)")
+///     } else {
+///         print("Vendors accepted successfully")
+///     }
+/// }
+///
+/// \endcode\param vendors Array of vendor IDs to accept (e.g., [“s2723”, “s2739”])
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)acceptVendors:(NSArray<NSString *> * _Nonnull)vendors completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Programmatically rejects consent for specific vendors.
+/// This method updates consent server-side and locally without showing UI.
+/// \param vendors Array of vendor IDs to reject (e.g., [“s2723”, “s2739”])
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)rejectVendors:(NSArray<NSString *> * _Nonnull)vendors completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Programmatically accepts consent for specific purposes.
+/// This method updates consent server-side and locally without showing UI.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.acceptPurposes(["1", "2"], updatePurpose: true) { error in
+///     if error == nil {
+///         // Analytics and advertising purposes now enabled
+///     }
+/// }
+///
+/// \endcode\param purposes Array of purpose IDs to accept (e.g., [“1”, “2”])
+///
+/// \param updatePurpose If <code>true</code>, automatically updates related vendors based on purpose changes
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)acceptPurposes:(NSArray<NSString *> * _Nonnull)purposes updatePurpose:(BOOL)updatePurpose completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Programmatically rejects consent for specific purposes.
+/// This method updates consent server-side and locally without showing UI.
+/// \param purposes Array of purpose IDs to reject (e.g., [“1”, “2”])
+///
+/// \param updateVendor If <code>true</code>, automatically updates related vendors based on purpose changes
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)rejectPurposes:(NSArray<NSString *> * _Nonnull)purposes updateVendor:(BOOL)updateVendor completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Rejects all available consents (purposes and vendors).
+/// Convenience method to deny consent for all configured purposes and vendors.
+/// This updates consent server-side and locally without showing UI.
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)rejectAllWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Accepts all available consents (purposes and vendors).
+/// Convenience method to grant consent for all configured purposes and vendors.
+/// This updates consent server-side and locally without showing UI.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.acceptAll { error in
+///     if error == nil {
+///         print("All consents accepted")
+///     }
+/// }
+///
+/// \endcode\param completion Completion handler called with any error that occurred
+///
 - (void)acceptAllWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Imports a CMP consent string from another source.
+/// Use this method to restore consent from a backup or transfer consent
+/// between app installations. The consent string will be validated server-side.
+/// <h2>Example</h2>
+/// \code
+/// let savedConsent = UserDefaults.standard.string(forKey: "backup_consent") ?? ""
+/// if !savedConsent.isEmpty {
+///     CMPManager.shared.importCMPInfo(savedConsent) { error in
+///         if error == nil {
+///             print("Consent restored successfully")
+///         }
+///     }
+/// }
+///
+/// \endcode\param cmpString The consent string to import
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)importCMPInfo:(NSString * _Nonnull)cmpString completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Resets all consent management data stored locally.
+/// This method clears all consent information from local storage,
+/// effectively returning the user to a “no consent given” state.
+/// Use with caution as this action cannot be undone.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.resetConsentManagementData { error in
+///     if error == nil {
+///         print("All consent data cleared")
+///         // You may want to call checkAndOpen() again
+///     }
+/// }
+///
+/// \endcode\param completion Completion handler called with any error that occurred
+///
 - (void)resetConsentManagementDataWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+@end
+
+@interface CMPManager (SWIFT_EXTENSION(cm_sdk_ios_v3))
+- (void)checkWithServerAndOpenIfNecessaryWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion SWIFT_DEPRECATED_MSG("Use checkAndOpen(jumpToSettings:completion:) instead");
+- (void)jumpToSettingsWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion SWIFT_DEPRECATED_MSG("Use forceOpen(jumpToSettings:completion:) instead");
 - (void)checkIfConsentIsRequiredWithCompletion:(void (^ _Nonnull)(BOOL))completion SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 - (BOOL)hasUserChoice SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 - (BOOL)hasPurposeConsentWithId:(NSString * _Nonnull)id SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getStatusForPurpose() instead");
@@ -371,21 +693,147 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPManager *
 - (NSArray<NSString *> * _Nonnull)getDisabledVendorsIDs SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 @end
 
+/// Protocol for receiving consent management events and updates.
+/// Implement this protocol to receive notifications about consent layer lifecycle events,
+/// consent updates, and error conditions. Set your implementing object as the
+/// <code>CMPManager.shared.delegate</code> to receive these callbacks.
+/// <h2>Example Implementation</h2>
+/// \code
+/// class ConsentHandler: CMPManagerDelegate {
+///     func didReceiveConsent(consent: String, jsonObject: [String: Any]) {
+///         print("New consent received: \(consent)")
+///         // Update your app's behavior based on consent
+///     }
+///
+///     func didShowConsentLayer() {
+///         // Pause app functionality while consent is being collected
+///     }
+///
+///     func didCloseConsentLayer() {
+///         // Resume normal app functionality
+///     }
+///
+///     func didReceiveError(error: String) {
+///         print("Consent error: \(error)")
+///     }
+/// }
+///
+/// \endcode
 SWIFT_PROTOCOL("_TtP13cm_sdk_ios_v318CMPManagerDelegate_")
 @protocol CMPManagerDelegate
+/// Called when new consent is received from the user.
+/// This method is called whenever the user provides or updates their consent,
+/// either through the consent layer UI or programmatic methods.
+/// important:
+/// This is your primary signal to update app behavior based on user consent.
+/// Parse the jsonObject or use CMPManager query methods to determine
+/// what functionality should be enabled or disabled.
+/// \param consent The TCF consent string containing encoded consent information
+///
+/// \param jsonObject Complete consent data as a dictionary, including purposes,
+/// vendors, and additional consent information
+///
 - (void)didReceiveConsentWithConsent:(NSString * _Nonnull)consent jsonObject:(NSDictionary<NSString *, id> * _Nonnull)jsonObject;
+/// Called when the consent layer UI is displayed to the user.
+/// Use this callback to pause app functionality, analytics, or other operations
+/// while the user is interacting with the consent layer.
+/// note:
+/// This is called regardless of whether consent is ultimately granted or denied.
 - (void)didShowConsentLayer;
+/// Called when the consent layer UI is closed.
+/// This is called when the user dismisses the consent layer, either by
+/// providing consent, rejecting consent, or closing the layer.
+/// note:
+/// If consent was provided, <code>didReceiveConsent</code> will be called before this method.
 - (void)didCloseConsentLayer;
+/// Called when an error occurs during consent operations.
+/// Implement this method to handle errors gracefully, such as network failures,
+/// configuration issues, or consent layer display problems.
+/// <h2>Common Error Scenarios</h2>
+/// <ul>
+///   <li>
+///     Network connectivity issues
+///   </li>
+///   <li>
+///     Invalid CMP configuration
+///   </li>
+///   <li>
+///     WebView loading failures
+///   </li>
+///   <li>
+///     Operation timeouts
+///   </li>
+/// </ul>
+/// \param error A human-readable description of the error that occurred
+///
 - (void)didReceiveErrorWithError:(NSString * _Nonnull)error;
 @end
 
+/// Comprehensive response object containing complete user consent status.
+/// This object provides a complete snapshot of the user’s current consent state,
+/// including overall status, detailed vendor and purpose breakdowns, consent strings,
+/// and regulatory information.
+/// <h2>Example Usage</h2>
+/// \code
+/// let userStatus = CMPManager.shared.getUserStatus()
+/// print("Overall status: \(userStatus.status)")
+///
+/// // Check specific vendor consent
+/// if userStatus.vendors["s2723"] == "granted" {
+///     // Initialize vendor SDK
+/// }
+///
+/// // Check specific purpose consent
+/// if userStatus.purposes["1"] == "granted" {
+///     // Enable analytics
+/// }
+///
+/// \endcode
 SWIFT_CLASS("_TtC13cm_sdk_ios_v321CMPUserStatusResponse")
 @interface CMPUserStatusResponse : NSObject
+/// Overall consent status indicator.
+/// Indicates whether the user has made any consent choices.
+/// <ul>
+///   <li>
+///     <code>"choiceExists"</code>: User has provided consent choices
+///   </li>
+///   <li>
+///     <code>"choiceDoesntExist"</code>: User has not yet made consent choices
+///   </li>
+/// </ul>
 @property (nonatomic, readonly, copy) NSString * _Nonnull status;
+/// Dictionary mapping vendor IDs to their consent status.
+/// Each key is a vendor identifier (e.g., “s2723”, “google”), and each value
+/// is either “granted” or “denied” indicating the user’s consent choice
+/// for that specific vendor.
+/// <h2>Example</h2>
+/// \code
+/// let vendorStatus = userStatus.vendors["s2723"] // Returns "granted" or "denied"
+///
+/// \endcode
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull vendors;
+/// Dictionary mapping purpose IDs to their consent status.
+/// Each key is a purpose identifier (e.g., “1”, “2”, “analytics”), and each value
+/// is either “granted” or “denied” indicating the user’s consent choice
+/// for that specific purpose.
+/// <h2>Example</h2>
+/// \code
+/// let purposeStatus = userStatus.purposes["1"] // Returns "granted" or "denied"
+///
+/// \endcode
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull purposes;
+/// The TCF (Transparency and Consent Framework) consent string.
+/// This is the standardized consent string used for programmatic consent
+/// sharing with TCF-compliant services. Empty if no consent exists.
 @property (nonatomic, readonly, copy) NSString * _Nonnull tcf;
+/// Additional consent string for Google vendors.
+/// This string contains consent information specifically for Google
+/// advertising technology providers. Used with Google Ad Manager
+/// and other Google services.
 @property (nonatomic, readonly, copy) NSString * _Nonnull addtlConsent;
+/// The applicable privacy regulation identifier.
+/// Indicates which privacy regulation framework applies to this user,
+/// such as “gdpr”, “ccpa”, or “cpra”.
 @property (nonatomic, readonly, copy) NSString * _Nonnull regulation;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
@@ -393,43 +841,196 @@ SWIFT_CLASS("_TtC13cm_sdk_ios_v321CMPUserStatusResponse")
 
 @class CMPPosition;
 @class CMPBackgroundStyle;
+/// Comprehensive configuration for consent layer appearance and behavior.
+/// This class provides extensive customization options for how the consent layer
+/// appears to users, including positioning, background styling, visual effects,
+/// and interaction behavior.
+/// <h2>Quick Start</h2>
+/// \code
+/// // Full screen with dimmed background
+/// let config = ConsentLayerUIConfig()
+///
+/// // Custom positioned with blur background
+/// let customConfig = ConsentLayerUIConfig(
+///     position: .custom(CGRect(x: 20, y: 100, width: 350, height: 500)),
+///     backgroundStyle: .blur(.prominent),
+///     cornerRadius: 15
+/// )
+///
+/// \endcode
 SWIFT_CLASS("_TtC13cm_sdk_ios_v320ConsentLayerUIConfig")
 @interface ConsentLayerUIConfig : NSObject
+/// Initializes UI configuration with Objective-C compatible wrappers.
+/// Creates a configuration object using Objective-C compatible wrapper classes.
+/// Use this initializer when integrating from Objective-C code.
+/// \param objcPosition The positioning strategy wrapper
+///
+/// \param objcBackgroundStyle The background styling wrapper
+///
+/// \param cornerRadius Corner radius in points (default: 0)
+///
+/// \param respectsSafeArea Whether to respect safe area (default: <code>true</code>)
+///
+/// \param allowsOrientationChanges Whether to handle orientation changes (default: <code>true</code>)
+///
+/// \param darkMode Whether to enable dark mode (default: <code>false</code>)
+///
 - (nonnull instancetype)initWithObjcPosition:(CMPPosition * _Nonnull)objcPosition objcBackgroundStyle:(CMPBackgroundStyle * _Nonnull)objcBackgroundStyle cornerRadius:(CGFloat)cornerRadius respectsSafeArea:(BOOL)respectsSafeArea allowsOrientationChanges:(BOOL)allowsOrientationChanges darkMode:(BOOL)darkMode OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+/// Objective-C compatible position wrapper.
+/// Use these static methods to create position configurations when
+/// integrating from Objective-C code.
 SWIFT_CLASS("_TtCC13cm_sdk_ios_v320ConsentLayerUIConfig11CMPPosition")
 @interface CMPPosition : NSObject
+/// Full screen positioning
+/// Creates a position configuration that covers the entire screen.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPPosition * _Nonnull fullScreen;)
 + (CMPPosition * _Nonnull)fullScreen SWIFT_WARN_UNUSED_RESULT;
+/// Custom positioning with specific rectangle
+/// Creates a position configuration with a custom frame rectangle.
+/// <h2>Example</h2>
+/// \code
+/// CGRect customFrame = CGRectMake(20, 100, 350, 500);
+/// CMPPosition *position = [CMPPosition customWithRect:customFrame];
+///
+/// \endcode\param rect The frame rectangle for custom positioning
+///
+///
+/// returns:
+/// Configured position wrapper for custom positioning
 + (CMPPosition * _Nonnull)customWithRect:(CGRect)rect SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
 @class UIColor;
+/// Objective-C compatible background style wrapper.
+/// Use these static methods to create background style configurations when
+/// integrating from Objective-C code.
 SWIFT_CLASS("_TtCC13cm_sdk_ios_v320ConsentLayerUIConfig18CMPBackgroundStyle")
 @interface CMPBackgroundStyle : NSObject
+/// Dimmed background with color and alpha transparency
+/// Creates a semi-transparent color overlay behind the consent layer.
+/// <h2>Example</h2>
+/// \code
+/// CMPBackgroundStyle *style = [CMPBackgroundStyle dimmedWithColor:[UIColor blackColor] alpha:0.5];
+///
+/// \endcode\param color The overlay color
+///
+/// \param alpha The transparency level (0.0 = fully transparent, 1.0 = fully opaque)
+///
+///
+/// returns:
+/// Configured background style wrapper
 + (CMPBackgroundStyle * _Nonnull)dimmedWithColor:(UIColor * _Nonnull)color alpha:(CGFloat)alpha SWIFT_WARN_UNUSED_RESULT;
+/// Blur effect background
+/// Creates an iOS system blur effect behind the consent layer.
+/// <h2>Example</h2>
+/// \code
+/// CMPBackgroundStyle *style = [CMPBackgroundStyle blurWithStyle:UIBlurEffectStyleProminent];
+///
+/// \endcode\param style The blur effect style (e.g., <code>UIBlurEffectStyleSystemMaterial</code>)
+///
+///
+/// returns:
+/// Configured background style wrapper
 + (CMPBackgroundStyle * _Nonnull)blurWithStyle:(enum UIBlurEffectStyle)style SWIFT_WARN_UNUSED_RESULT;
+/// Solid color background
+/// Creates a solid color background behind the consent layer.
+/// <h2>Example</h2>
+/// \code
+/// CMPBackgroundStyle *style = [CMPBackgroundStyle color:[UIColor whiteColor]];
+///
+/// \endcode\param color The background color
+///
+///
+/// returns:
+/// Configured background style wrapper
 + (CMPBackgroundStyle * _Nonnull)color:(UIColor * _Nonnull)color SWIFT_WARN_UNUSED_RESULT;
+/// No background styling
+/// Creates a transparent background with no visual treatment.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPBackgroundStyle * _Nonnull none;)
 + (CMPBackgroundStyle * _Nonnull)none SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+/// Manages Firebase Analytics consent integration.
+/// This service handles automatic consent propagation to Firebase Analytics
+/// when Firebase is detected in your app. It converts CMP consent settings
+/// to Google Consent Mode v2 format and applies them to Firebase Analytics.
+/// <h2>Automatic Integration</h2>
+/// When Firebase Analytics is detected, consent updates are automatically
+/// propagated unless disabled. No additional Firebase configuration is required.
+/// <h2>Manual Control</h2>
+/// You can disable automatic updates and manually control when Firebase
+/// consent is updated:
+/// \code
+/// // Disable automatic updates
+/// FirebaseConsentService.shared.setAutomaticConsentUpdatesEnabled(false)
+///
+/// // Manually update when needed
+/// let consentMode = CMPManager.shared.getGoogleConsentModeStatus()
+/// FirebaseConsentService.shared.updateFirebaseConsent(consentMode: consentMode)
+///
+/// \endcode
 SWIFT_CLASS("_TtC13cm_sdk_ios_v322FirebaseConsentService")
 @interface FirebaseConsentService : NSObject
+/// The shared singleton instance of the Firebase consent service.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FirebaseConsentService * _Nonnull shared;)
 + (FirebaseConsentService * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-/// Checks if Firebase Analytics is integrated in the app
+/// Enables or disables automatic consent updates to Firebase.
+/// When enabled (default), consent changes from the CMP automatically
+/// update Firebase Analytics consent settings. When disabled, you must
+/// manually call <code>updateFirebaseConsent(consentMode:)</code> to update Firebase,
+/// or implement your own logic using the getGoogleConsentModeStatus() method.
+/// <h2>Example</h2>
+/// \code
+/// // Disable automatic updates for manual control
+/// FirebaseConsentService.shared.setAutomaticConsentUpdatesEnabled(false)
+///
+/// // Later, manually update Firebase consent
+/// let consentMode = CMPManager.shared.getGoogleConsentModeStatus()
+/// FirebaseConsentService.shared.updateFirebaseConsent(consentMode: consentMode)
+///
+/// \endcode\param enabled <code>true</code> to enable automatic updates, <code>false</code> to disable
+///
+- (void)setAutomaticConsentUpdatesEnabled:(BOOL)enabled;
+/// Checks if automatic consent updates are enabled.
+///
+/// returns:
+/// <code>true</code> if automatic updates are enabled, <code>false</code> otherwise
+- (BOOL)isAutomaticConsentUpdatesEnabled SWIFT_WARN_UNUSED_RESULT;
+/// Check if automatic updates have been explicitly configured by the app
+- (BOOL)hasExplicitConsentConfiguration SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)isFirebaseAnalyticsAvailable SWIFT_WARN_UNUSED_RESULT;
-/// Updates Firebase consent settings using the provided consent mode dictionary
+/// Manually updates Firebase consent settings.
+/// Use this method to manually update Firebase Analytics consent settings
+/// when automatic updates are disabled, or when you need precise control
+/// over when updates occur.
+/// <h2>Example</h2>
+/// \code
+/// let consentMode = [
+///     "analytics_storage": "granted",
+///     "ad_storage": "denied",
+///     "ad_user_data": "denied",
+///     "ad_personalization": "denied"
+/// ]
+///
+/// FirebaseConsentService.shared.updateFirebaseConsent(consentMode: consentMode)
+///
+/// \endcodenote:
+/// This method has no effect if Firebase Analytics is not available
+/// or if the consent settings dictionary is empty.
+/// \param consentMode Dictionary of consent settings in Google Consent Mode format
+/// Expected keys: “analytics_storage”, “ad_storage”, “ad_user_data”, “ad_personalization”
+/// Expected values: “granted” or “denied”
+///
 - (void)updateFirebaseConsentWithConsentMode:(NSDictionary<NSString *, NSString *> * _Nonnull)consentMode;
 @end
 
@@ -439,8 +1040,43 @@ typedef SWIFT_ENUM(NSInteger, UniqueConsentStatus, open) {
   UniqueConsentStatusDenied = 2,
 };
 
+/// Configuration object for CMP service connection parameters.
+/// This class encapsulates all the necessary information to connect to your
+/// CMP (Consent Management Platform) service, including service identification,
+/// localization, and app identification parameters.
+/// <h2>Example</h2>
+/// \code
+/// let config = UrlConfig(
+///     id: "26cba6cf81e76",                    // Your CMP configuration ID
+///     domain: "delivery.consentmanager.net", // Your CMP service domain
+///     language: "EN",                        // User's preferred language
+///     appName: "MyAwesomeApp"               // Your app's display name
+/// )
+/// CMPManager.shared.setUrlConfig(config)
+///
+/// \endcode
 SWIFT_CLASS("_TtC13cm_sdk_ios_v39UrlConfig")
 @interface UrlConfig : NSObject
+/// Initializes URL configuration for CMP service connection.
+/// Creates a configuration object with all necessary parameters to connect
+/// to your CMP service and properly identify your app and user preferences.
+/// <h2>Example</h2>
+/// \code
+/// let config = UrlConfig(
+///     id: "your-config-id",
+///     domain: "your-cmp-domain.com",
+///     language: "EN",
+///     appName: "MyApp"
+/// )
+///
+/// \endcode\param id The unique CMP configuration identifier from your CMP dashboard
+///
+/// \param domain The CMP service domain (e.g., “delivery.consentmanager.net”)
+///
+/// \param language The language code for localization (e.g., “EN”, “DE”, “FR”)
+///
+/// \param appName The application name for identification (e.g., “MyApp”)
+///
 - (nonnull instancetype)initWithId:(NSString * _Nonnull)id domain:(NSString * _Nonnull)domain language:(NSString * _Nonnull)language appName:(NSString * _Nonnull)appName OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
@@ -773,20 +1409,158 @@ enum UniqueConsentStatus : NSInteger;
 @class CMPUserStatusResponse;
 SWIFT_CLASS("_TtC13cm_sdk_ios_v310CMPManager")
 @interface CMPManager : NSObject
+/// The shared singleton instance of CMPManager.
+/// Use this instance to access all consent management functionality.
+/// The instance is thread-safe and manages its own internal state.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPManager * _Nonnull shared;)
 + (CMPManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// The delegate that receives consent management events and updates.
+/// Set this delegate to receive notifications about consent layer events,
+/// consent updates, and error conditions.
 @property (nonatomic, weak) id <CMPManagerDelegate> _Nullable delegate;
-- (void)setLinkClickHandler:(BOOL (^ _Nonnull)(NSURL * _Nonnull))handler;
-- (void)removeLinkClickHandler;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+/// Sets a custom handler for link clicks within the consent layer.
+/// Use this to intercept and handle external links in the consent layer,
+/// such as privacy policy or terms of service links.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.setLinkClickHandler { url in
+///     if url.host == "external-site.com" {
+///         // Open in external browser instead of consent layer
+///         UIApplication.shared.open(url)
+///         return true // Prevent default navigation
+///     }
+///     return false // Allow default navigation
+/// }
+///
+/// \endcode\param handler Closure that receives the URL and returns <code>true</code> to prevent navigation
+///
+- (void)setLinkClickHandler:(BOOL (^ _Nonnull)(NSURL * _Nonnull))handler;
+/// Removes the custom link click handler.
+/// After calling this method, all links will use default navigation behavior.
+- (void)removeLinkClickHandler;
+/// Configures the URL parameters for consent management requests.
+/// This method must be called before any consent operations to establish
+/// connection with your CMP service configuration.
+/// <h2>Example</h2>
+/// \code
+/// let config = UrlConfig(
+///     id: "26cba6cf81e76",
+///     domain: "delivery.consentmanager.net",
+///     language: "EN",
+///     appName: "MyApp"
+/// )
+/// CMPManager.shared.setUrlConfig(config)
+///
+/// \endcode\param config The URL configuration containing domain, ID, language, and app name
+///
 - (void)setUrlConfig:(UrlConfig * _Nonnull)config;
+/// Configures the visual appearance and behavior of the consent layer.
+/// Customize how the consent layer appears to users, including positioning,
+/// background styling, corner radius, and interaction behavior.
+/// <h2>Example</h2>
+/// \code
+/// let uiConfig = ConsentLayerUIConfig(
+///     position: .fullScreen,
+///     backgroundStyle: .dimmed(.black, 0.5),
+///     cornerRadius: 10,
+///     darkMode: false
+/// )
+/// CMPManager.shared.setWebViewConfig(uiConfig)
+///
+/// \endcode\param config The UI configuration for positioning, styling, and interaction behavior
+///
 - (void)setWebViewConfig:(ConsentLayerUIConfig * _Nonnull)config;
+/// Sets the view controller that will present the consent layer.
+/// The consent layer will be presented modally over this view controller
+/// when consent collection is required.
+/// important:
+/// This must be set before calling any methods that might show the consent layer.
+/// \param viewController The presenting view controller
+///
 - (void)setPresentingViewController:(UIViewController * _Nonnull)viewController;
+/// Gets the consent status for a specific purpose.
+/// Purposes represent different types of data processing activities
+/// (e.g., analytics, advertising, functional cookies).
+/// <h2>Example</h2>
+/// \code
+/// let status = CMPManager.shared.getStatusForPurpose(id: "1")
+/// switch status {
+/// case .granted:
+///     // Enable analytics
+/// case .denied:
+///     // Disable analytics
+/// case .choiceDoesntExist:
+///     // No consent choice made yet
+/// }
+///
+/// \endcode\param id The purpose identifier (e.g., “1”, “2”, “analytics”)
+///
+///
+/// returns:
+/// The consent status for this purpose
 - (enum UniqueConsentStatus)getStatusForPurposeWithId:(NSString * _Nonnull)id SWIFT_WARN_UNUSED_RESULT;
+/// Gets the consent status for a specific vendor.
+/// Vendors are third-party companies that process user data.
+/// Each vendor has an identifier in your CMP configuration.
+/// <h2>Example</h2>
+/// \code
+/// let status = CMPManager.shared.getStatusForVendor(id: "s2723")
+/// if status == .granted {
+///     // Initialize vendor SDK
+/// }
+///
+/// \endcode\param id The vendor identifier (e.g., “s2723”, “google”)
+///
+///
+/// returns:
+/// The consent status for this vendor
 - (enum UniqueConsentStatus)getStatusForVendorWithId:(NSString * _Nonnull)id SWIFT_WARN_UNUSED_RESULT;
+/// Retrieves the current Google Consent Mode status for all consent types.
+/// Returns consent status in Google Consent Mode v2 format, compatible
+/// with Google Analytics, Google Ads, and other Google services.
+/// <h2>Example</h2>
+/// \code
+/// let consentMode = CMPManager.shared.getGoogleConsentModeStatus()
+/// print("Analytics storage: \(consentMode["analytics_storage"] ?? "denied")")
+/// print("Ad storage: \(consentMode["ad_storage"] ?? "denied")")
+///
+/// \endcode
+/// returns:
+/// Dictionary mapping consent types to their current status
+/// Keys: “analytics_storage”, “ad_storage”, “ad_user_data”, “ad_personalization”
+/// Values: “granted” or “denied”
 - (NSDictionary<NSString *, NSString *> * _Nonnull)getGoogleConsentModeStatus SWIFT_WARN_UNUSED_RESULT;
+/// Exports the current CMP consent string.
+/// The consent string contains encoded consent information that can be
+/// shared with other systems or stored for backup purposes.
+/// <h2>Example</h2>
+/// \code
+/// let consentString = CMPManager.shared.exportCMPInfo()
+/// if !consentString.isEmpty {
+///     // Store or share consent string
+///     UserDefaults.standard.set(consentString, forKey: "backup_consent")
+/// }
+///
+/// \endcode
+/// returns:
+/// The consent string, or empty string if no consent exists
 - (NSString * _Nonnull)exportCMPInfo SWIFT_WARN_UNUSED_RESULT;
+/// Gets comprehensive user status including all vendors, purposes, and consent strings.
+/// This method returns complete information about the user’s consent state,
+/// including detailed breakdowns by vendor and purpose.
+/// <h2>Example</h2>
+/// \code
+/// let userStatus = CMPManager.shared.getUserStatus()
+/// print("Overall status: \(userStatus.status)")
+/// print("TCF string: \(userStatus.tcf)")
+/// print("Vendor consents: \(userStatus.vendors)")
+/// print("Purpose consents: \(userStatus.purposes)")
+///
+/// \endcode
+/// returns:
+/// Complete user status response object containing all consent information
 - (CMPUserStatusResponse * _Nonnull)getUserStatus SWIFT_WARN_UNUSED_RESULT;
 @end
 
@@ -798,22 +1572,206 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPManager *
 - (BOOL (^ _Nullable)(NSURL * _Nonnull))getOnClickLinkCallback SWIFT_WARN_UNUSED_RESULT;
 @end
 
+@interface CMPManager (SWIFT_EXTENSION(cm_sdk_ios_v3))
+/// Configure automatic Firebase consent updates before SDK initialization
+/// Call this BEFORE any CMP operations for guaranteed timing control
+/// \param enabled true to enable automatic updates, false to disable
+///
++ (void)configureAutomaticFirebaseConsentUpdates:(BOOL)enabled;
+/// Enables or disables automatic Firebase consent updates (instance method)
+/// \param enabled true to enable automatic updates, false to disable
+///
+- (void)setAutomaticFirebaseConsentUpdatesEnabled:(BOOL)enabled;
+/// Returns whether automatic Firebase consent updates are enabled
+///
+/// returns:
+/// true if automatic updates are enabled, false otherwise
+- (BOOL)isAutomaticFirebaseConsentUpdatesEnabled SWIFT_WARN_UNUSED_RESULT;
+/// Manually update Firebase consent (bypasses automatic setting)
+///
+/// returns:
+/// true if Firebase Analytics is available and update was attempted, false otherwise
+- (BOOL)updateFirebaseConsent SWIFT_WARN_UNUSED_RESULT;
+/// Check if Firebase Analytics is available in the app
+///
+/// returns:
+/// true if Firebase Analytics is linked and available, false otherwise
+- (BOOL)isFirebaseAnalyticsAvailable SWIFT_WARN_UNUSED_RESULT;
+@end
+
 @class NSError;
 @interface CMPManager (SWIFT_EXTENSION(cm_sdk_ios_v3))
-- (void)checkWithServerAndOpenIfNecessaryWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion SWIFT_DEPRECATED_MSG("Use checkAndOpen(jumpToSettings:completion:) instead");
+/// Checks consent status with the server and opens the consent layer if necessary.
+/// This method performs an intelligent check: if the user already has valid consent,
+/// no UI is shown. If consent is required, the consent layer opens automatically.
+/// This is typically called during app initialization.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.checkAndOpen { error in
+///     if let error = error {
+///         print("Consent check failed: \(error)")
+///     } else {
+///         print("Consent check completed successfully")
+///     }
+/// }
+///
+/// \endcode\param jumpToSettings If <code>true</code> and the consent layer opens, jumps directly to the settings page
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)checkAndOpenWithJumpToSettings:(BOOL)jumpToSettings completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Checks consent status with the server and opens the consent layer if necessary.
+/// Async version of <code>checkAndOpen(jumpToSettings:completion:)</code> for modern Swift concurrency.
+/// <h2>Example</h2>
+/// \code
+/// do {
+///     try await CMPManager.shared.checkAndOpen()
+///     print("Consent check completed successfully")
+/// } catch {
+///     print("Consent check failed: \(error)")
+/// }
+///
+/// \endcode\param jumpToSettings If <code>true</code> and the consent layer opens, jumps directly to the settings page
+///
+///
+/// throws:
+/// Any error that occurred during the operation
 - (void)checkAndOpenWithJumpToSettings:(BOOL)jumpToSettings completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler SWIFT_AVAILABILITY(ios,introduced=13.0.0);
+/// Forces the consent layer to open regardless of current consent status.
+/// Use this method when you want to allow users to review or modify their
+/// consent choices, even if they have already provided valid consent.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.forceOpen { error in
+///     if let error = error {
+///         print("Failed to open consent layer: \(error)")
+///     }
+/// }
+///
+/// \endcode\param jumpToSettings If <code>true</code>, opens directly to the settings page instead of the main consent page
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)forceOpenWithJumpToSettings:(BOOL)jumpToSettings completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Forces the consent layer to open regardless of current consent status.
+/// Async version of <code>forceOpen(jumpToSettings:completion:)</code> for modern Swift concurrency.
+/// \param jumpToSettings If <code>true</code>, opens directly to the settings page instead of the main consent page
+///
+///
+/// throws:
+/// Any error that occurred during the operation
 - (void)forceOpenWithJumpToSettings:(BOOL)jumpToSettings completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler SWIFT_AVAILABILITY(ios,introduced=13.0.0);
-- (void)jumpToSettingsWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Programmatically accepts consent for specific vendors.
+/// This method updates consent server-side and locally without showing UI.
+/// Use when your app needs to programmatically manage consent based on user actions.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.acceptVendors(["s2723", "google"]) { error in
+///     if let error = error {
+///         print("Failed to accept vendors: \(error)")
+///     } else {
+///         print("Vendors accepted successfully")
+///     }
+/// }
+///
+/// \endcode\param vendors Array of vendor IDs to accept (e.g., [“s2723”, “s2739”])
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)acceptVendors:(NSArray<NSString *> * _Nonnull)vendors completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Programmatically rejects consent for specific vendors.
+/// This method updates consent server-side and locally without showing UI.
+/// \param vendors Array of vendor IDs to reject (e.g., [“s2723”, “s2739”])
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)rejectVendors:(NSArray<NSString *> * _Nonnull)vendors completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Programmatically accepts consent for specific purposes.
+/// This method updates consent server-side and locally without showing UI.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.acceptPurposes(["1", "2"], updatePurpose: true) { error in
+///     if error == nil {
+///         // Analytics and advertising purposes now enabled
+///     }
+/// }
+///
+/// \endcode\param purposes Array of purpose IDs to accept (e.g., [“1”, “2”])
+///
+/// \param updatePurpose If <code>true</code>, automatically updates related vendors based on purpose changes
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)acceptPurposes:(NSArray<NSString *> * _Nonnull)purposes updatePurpose:(BOOL)updatePurpose completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Programmatically rejects consent for specific purposes.
+/// This method updates consent server-side and locally without showing UI.
+/// \param purposes Array of purpose IDs to reject (e.g., [“1”, “2”])
+///
+/// \param updateVendor If <code>true</code>, automatically updates related vendors based on purpose changes
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)rejectPurposes:(NSArray<NSString *> * _Nonnull)purposes updateVendor:(BOOL)updateVendor completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Rejects all available consents (purposes and vendors).
+/// Convenience method to deny consent for all configured purposes and vendors.
+/// This updates consent server-side and locally without showing UI.
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)rejectAllWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Accepts all available consents (purposes and vendors).
+/// Convenience method to grant consent for all configured purposes and vendors.
+/// This updates consent server-side and locally without showing UI.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.acceptAll { error in
+///     if error == nil {
+///         print("All consents accepted")
+///     }
+/// }
+///
+/// \endcode\param completion Completion handler called with any error that occurred
+///
 - (void)acceptAllWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Imports a CMP consent string from another source.
+/// Use this method to restore consent from a backup or transfer consent
+/// between app installations. The consent string will be validated server-side.
+/// <h2>Example</h2>
+/// \code
+/// let savedConsent = UserDefaults.standard.string(forKey: "backup_consent") ?? ""
+/// if !savedConsent.isEmpty {
+///     CMPManager.shared.importCMPInfo(savedConsent) { error in
+///         if error == nil {
+///             print("Consent restored successfully")
+///         }
+///     }
+/// }
+///
+/// \endcode\param cmpString The consent string to import
+///
+/// \param completion Completion handler called with any error that occurred
+///
 - (void)importCMPInfo:(NSString * _Nonnull)cmpString completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+/// Resets all consent management data stored locally.
+/// This method clears all consent information from local storage,
+/// effectively returning the user to a “no consent given” state.
+/// Use with caution as this action cannot be undone.
+/// <h2>Example</h2>
+/// \code
+/// CMPManager.shared.resetConsentManagementData { error in
+///     if error == nil {
+///         print("All consent data cleared")
+///         // You may want to call checkAndOpen() again
+///     }
+/// }
+///
+/// \endcode\param completion Completion handler called with any error that occurred
+///
 - (void)resetConsentManagementDataWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+@end
+
+@interface CMPManager (SWIFT_EXTENSION(cm_sdk_ios_v3))
+- (void)checkWithServerAndOpenIfNecessaryWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion SWIFT_DEPRECATED_MSG("Use checkAndOpen(jumpToSettings:completion:) instead");
+- (void)jumpToSettingsWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion SWIFT_DEPRECATED_MSG("Use forceOpen(jumpToSettings:completion:) instead");
 - (void)checkIfConsentIsRequiredWithCompletion:(void (^ _Nonnull)(BOOL))completion SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 - (BOOL)hasUserChoice SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 - (BOOL)hasPurposeConsentWithId:(NSString * _Nonnull)id SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getStatusForPurpose() instead");
@@ -827,21 +1785,147 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPManager *
 - (NSArray<NSString *> * _Nonnull)getDisabledVendorsIDs SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_MSG("Use getUserStatus() instead");
 @end
 
+/// Protocol for receiving consent management events and updates.
+/// Implement this protocol to receive notifications about consent layer lifecycle events,
+/// consent updates, and error conditions. Set your implementing object as the
+/// <code>CMPManager.shared.delegate</code> to receive these callbacks.
+/// <h2>Example Implementation</h2>
+/// \code
+/// class ConsentHandler: CMPManagerDelegate {
+///     func didReceiveConsent(consent: String, jsonObject: [String: Any]) {
+///         print("New consent received: \(consent)")
+///         // Update your app's behavior based on consent
+///     }
+///
+///     func didShowConsentLayer() {
+///         // Pause app functionality while consent is being collected
+///     }
+///
+///     func didCloseConsentLayer() {
+///         // Resume normal app functionality
+///     }
+///
+///     func didReceiveError(error: String) {
+///         print("Consent error: \(error)")
+///     }
+/// }
+///
+/// \endcode
 SWIFT_PROTOCOL("_TtP13cm_sdk_ios_v318CMPManagerDelegate_")
 @protocol CMPManagerDelegate
+/// Called when new consent is received from the user.
+/// This method is called whenever the user provides or updates their consent,
+/// either through the consent layer UI or programmatic methods.
+/// important:
+/// This is your primary signal to update app behavior based on user consent.
+/// Parse the jsonObject or use CMPManager query methods to determine
+/// what functionality should be enabled or disabled.
+/// \param consent The TCF consent string containing encoded consent information
+///
+/// \param jsonObject Complete consent data as a dictionary, including purposes,
+/// vendors, and additional consent information
+///
 - (void)didReceiveConsentWithConsent:(NSString * _Nonnull)consent jsonObject:(NSDictionary<NSString *, id> * _Nonnull)jsonObject;
+/// Called when the consent layer UI is displayed to the user.
+/// Use this callback to pause app functionality, analytics, or other operations
+/// while the user is interacting with the consent layer.
+/// note:
+/// This is called regardless of whether consent is ultimately granted or denied.
 - (void)didShowConsentLayer;
+/// Called when the consent layer UI is closed.
+/// This is called when the user dismisses the consent layer, either by
+/// providing consent, rejecting consent, or closing the layer.
+/// note:
+/// If consent was provided, <code>didReceiveConsent</code> will be called before this method.
 - (void)didCloseConsentLayer;
+/// Called when an error occurs during consent operations.
+/// Implement this method to handle errors gracefully, such as network failures,
+/// configuration issues, or consent layer display problems.
+/// <h2>Common Error Scenarios</h2>
+/// <ul>
+///   <li>
+///     Network connectivity issues
+///   </li>
+///   <li>
+///     Invalid CMP configuration
+///   </li>
+///   <li>
+///     WebView loading failures
+///   </li>
+///   <li>
+///     Operation timeouts
+///   </li>
+/// </ul>
+/// \param error A human-readable description of the error that occurred
+///
 - (void)didReceiveErrorWithError:(NSString * _Nonnull)error;
 @end
 
+/// Comprehensive response object containing complete user consent status.
+/// This object provides a complete snapshot of the user’s current consent state,
+/// including overall status, detailed vendor and purpose breakdowns, consent strings,
+/// and regulatory information.
+/// <h2>Example Usage</h2>
+/// \code
+/// let userStatus = CMPManager.shared.getUserStatus()
+/// print("Overall status: \(userStatus.status)")
+///
+/// // Check specific vendor consent
+/// if userStatus.vendors["s2723"] == "granted" {
+///     // Initialize vendor SDK
+/// }
+///
+/// // Check specific purpose consent
+/// if userStatus.purposes["1"] == "granted" {
+///     // Enable analytics
+/// }
+///
+/// \endcode
 SWIFT_CLASS("_TtC13cm_sdk_ios_v321CMPUserStatusResponse")
 @interface CMPUserStatusResponse : NSObject
+/// Overall consent status indicator.
+/// Indicates whether the user has made any consent choices.
+/// <ul>
+///   <li>
+///     <code>"choiceExists"</code>: User has provided consent choices
+///   </li>
+///   <li>
+///     <code>"choiceDoesntExist"</code>: User has not yet made consent choices
+///   </li>
+/// </ul>
 @property (nonatomic, readonly, copy) NSString * _Nonnull status;
+/// Dictionary mapping vendor IDs to their consent status.
+/// Each key is a vendor identifier (e.g., “s2723”, “google”), and each value
+/// is either “granted” or “denied” indicating the user’s consent choice
+/// for that specific vendor.
+/// <h2>Example</h2>
+/// \code
+/// let vendorStatus = userStatus.vendors["s2723"] // Returns "granted" or "denied"
+///
+/// \endcode
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull vendors;
+/// Dictionary mapping purpose IDs to their consent status.
+/// Each key is a purpose identifier (e.g., “1”, “2”, “analytics”), and each value
+/// is either “granted” or “denied” indicating the user’s consent choice
+/// for that specific purpose.
+/// <h2>Example</h2>
+/// \code
+/// let purposeStatus = userStatus.purposes["1"] // Returns "granted" or "denied"
+///
+/// \endcode
 @property (nonatomic, readonly, copy) NSDictionary<NSString *, NSString *> * _Nonnull purposes;
+/// The TCF (Transparency and Consent Framework) consent string.
+/// This is the standardized consent string used for programmatic consent
+/// sharing with TCF-compliant services. Empty if no consent exists.
 @property (nonatomic, readonly, copy) NSString * _Nonnull tcf;
+/// Additional consent string for Google vendors.
+/// This string contains consent information specifically for Google
+/// advertising technology providers. Used with Google Ad Manager
+/// and other Google services.
 @property (nonatomic, readonly, copy) NSString * _Nonnull addtlConsent;
+/// The applicable privacy regulation identifier.
+/// Indicates which privacy regulation framework applies to this user,
+/// such as “gdpr”, “ccpa”, or “cpra”.
 @property (nonatomic, readonly, copy) NSString * _Nonnull regulation;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
@@ -849,43 +1933,196 @@ SWIFT_CLASS("_TtC13cm_sdk_ios_v321CMPUserStatusResponse")
 
 @class CMPPosition;
 @class CMPBackgroundStyle;
+/// Comprehensive configuration for consent layer appearance and behavior.
+/// This class provides extensive customization options for how the consent layer
+/// appears to users, including positioning, background styling, visual effects,
+/// and interaction behavior.
+/// <h2>Quick Start</h2>
+/// \code
+/// // Full screen with dimmed background
+/// let config = ConsentLayerUIConfig()
+///
+/// // Custom positioned with blur background
+/// let customConfig = ConsentLayerUIConfig(
+///     position: .custom(CGRect(x: 20, y: 100, width: 350, height: 500)),
+///     backgroundStyle: .blur(.prominent),
+///     cornerRadius: 15
+/// )
+///
+/// \endcode
 SWIFT_CLASS("_TtC13cm_sdk_ios_v320ConsentLayerUIConfig")
 @interface ConsentLayerUIConfig : NSObject
+/// Initializes UI configuration with Objective-C compatible wrappers.
+/// Creates a configuration object using Objective-C compatible wrapper classes.
+/// Use this initializer when integrating from Objective-C code.
+/// \param objcPosition The positioning strategy wrapper
+///
+/// \param objcBackgroundStyle The background styling wrapper
+///
+/// \param cornerRadius Corner radius in points (default: 0)
+///
+/// \param respectsSafeArea Whether to respect safe area (default: <code>true</code>)
+///
+/// \param allowsOrientationChanges Whether to handle orientation changes (default: <code>true</code>)
+///
+/// \param darkMode Whether to enable dark mode (default: <code>false</code>)
+///
 - (nonnull instancetype)initWithObjcPosition:(CMPPosition * _Nonnull)objcPosition objcBackgroundStyle:(CMPBackgroundStyle * _Nonnull)objcBackgroundStyle cornerRadius:(CGFloat)cornerRadius respectsSafeArea:(BOOL)respectsSafeArea allowsOrientationChanges:(BOOL)allowsOrientationChanges darkMode:(BOOL)darkMode OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+/// Objective-C compatible position wrapper.
+/// Use these static methods to create position configurations when
+/// integrating from Objective-C code.
 SWIFT_CLASS("_TtCC13cm_sdk_ios_v320ConsentLayerUIConfig11CMPPosition")
 @interface CMPPosition : NSObject
+/// Full screen positioning
+/// Creates a position configuration that covers the entire screen.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPPosition * _Nonnull fullScreen;)
 + (CMPPosition * _Nonnull)fullScreen SWIFT_WARN_UNUSED_RESULT;
+/// Custom positioning with specific rectangle
+/// Creates a position configuration with a custom frame rectangle.
+/// <h2>Example</h2>
+/// \code
+/// CGRect customFrame = CGRectMake(20, 100, 350, 500);
+/// CMPPosition *position = [CMPPosition customWithRect:customFrame];
+///
+/// \endcode\param rect The frame rectangle for custom positioning
+///
+///
+/// returns:
+/// Configured position wrapper for custom positioning
 + (CMPPosition * _Nonnull)customWithRect:(CGRect)rect SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
 @class UIColor;
+/// Objective-C compatible background style wrapper.
+/// Use these static methods to create background style configurations when
+/// integrating from Objective-C code.
 SWIFT_CLASS("_TtCC13cm_sdk_ios_v320ConsentLayerUIConfig18CMPBackgroundStyle")
 @interface CMPBackgroundStyle : NSObject
+/// Dimmed background with color and alpha transparency
+/// Creates a semi-transparent color overlay behind the consent layer.
+/// <h2>Example</h2>
+/// \code
+/// CMPBackgroundStyle *style = [CMPBackgroundStyle dimmedWithColor:[UIColor blackColor] alpha:0.5];
+///
+/// \endcode\param color The overlay color
+///
+/// \param alpha The transparency level (0.0 = fully transparent, 1.0 = fully opaque)
+///
+///
+/// returns:
+/// Configured background style wrapper
 + (CMPBackgroundStyle * _Nonnull)dimmedWithColor:(UIColor * _Nonnull)color alpha:(CGFloat)alpha SWIFT_WARN_UNUSED_RESULT;
+/// Blur effect background
+/// Creates an iOS system blur effect behind the consent layer.
+/// <h2>Example</h2>
+/// \code
+/// CMPBackgroundStyle *style = [CMPBackgroundStyle blurWithStyle:UIBlurEffectStyleProminent];
+///
+/// \endcode\param style The blur effect style (e.g., <code>UIBlurEffectStyleSystemMaterial</code>)
+///
+///
+/// returns:
+/// Configured background style wrapper
 + (CMPBackgroundStyle * _Nonnull)blurWithStyle:(enum UIBlurEffectStyle)style SWIFT_WARN_UNUSED_RESULT;
+/// Solid color background
+/// Creates a solid color background behind the consent layer.
+/// <h2>Example</h2>
+/// \code
+/// CMPBackgroundStyle *style = [CMPBackgroundStyle color:[UIColor whiteColor]];
+///
+/// \endcode\param color The background color
+///
+///
+/// returns:
+/// Configured background style wrapper
 + (CMPBackgroundStyle * _Nonnull)color:(UIColor * _Nonnull)color SWIFT_WARN_UNUSED_RESULT;
+/// No background styling
+/// Creates a transparent background with no visual treatment.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPBackgroundStyle * _Nonnull none;)
 + (CMPBackgroundStyle * _Nonnull)none SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+/// Manages Firebase Analytics consent integration.
+/// This service handles automatic consent propagation to Firebase Analytics
+/// when Firebase is detected in your app. It converts CMP consent settings
+/// to Google Consent Mode v2 format and applies them to Firebase Analytics.
+/// <h2>Automatic Integration</h2>
+/// When Firebase Analytics is detected, consent updates are automatically
+/// propagated unless disabled. No additional Firebase configuration is required.
+/// <h2>Manual Control</h2>
+/// You can disable automatic updates and manually control when Firebase
+/// consent is updated:
+/// \code
+/// // Disable automatic updates
+/// FirebaseConsentService.shared.setAutomaticConsentUpdatesEnabled(false)
+///
+/// // Manually update when needed
+/// let consentMode = CMPManager.shared.getGoogleConsentModeStatus()
+/// FirebaseConsentService.shared.updateFirebaseConsent(consentMode: consentMode)
+///
+/// \endcode
 SWIFT_CLASS("_TtC13cm_sdk_ios_v322FirebaseConsentService")
 @interface FirebaseConsentService : NSObject
+/// The shared singleton instance of the Firebase consent service.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FirebaseConsentService * _Nonnull shared;)
 + (FirebaseConsentService * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-/// Checks if Firebase Analytics is integrated in the app
+/// Enables or disables automatic consent updates to Firebase.
+/// When enabled (default), consent changes from the CMP automatically
+/// update Firebase Analytics consent settings. When disabled, you must
+/// manually call <code>updateFirebaseConsent(consentMode:)</code> to update Firebase,
+/// or implement your own logic using the getGoogleConsentModeStatus() method.
+/// <h2>Example</h2>
+/// \code
+/// // Disable automatic updates for manual control
+/// FirebaseConsentService.shared.setAutomaticConsentUpdatesEnabled(false)
+///
+/// // Later, manually update Firebase consent
+/// let consentMode = CMPManager.shared.getGoogleConsentModeStatus()
+/// FirebaseConsentService.shared.updateFirebaseConsent(consentMode: consentMode)
+///
+/// \endcode\param enabled <code>true</code> to enable automatic updates, <code>false</code> to disable
+///
+- (void)setAutomaticConsentUpdatesEnabled:(BOOL)enabled;
+/// Checks if automatic consent updates are enabled.
+///
+/// returns:
+/// <code>true</code> if automatic updates are enabled, <code>false</code> otherwise
+- (BOOL)isAutomaticConsentUpdatesEnabled SWIFT_WARN_UNUSED_RESULT;
+/// Check if automatic updates have been explicitly configured by the app
+- (BOOL)hasExplicitConsentConfiguration SWIFT_WARN_UNUSED_RESULT;
 - (BOOL)isFirebaseAnalyticsAvailable SWIFT_WARN_UNUSED_RESULT;
-/// Updates Firebase consent settings using the provided consent mode dictionary
+/// Manually updates Firebase consent settings.
+/// Use this method to manually update Firebase Analytics consent settings
+/// when automatic updates are disabled, or when you need precise control
+/// over when updates occur.
+/// <h2>Example</h2>
+/// \code
+/// let consentMode = [
+///     "analytics_storage": "granted",
+///     "ad_storage": "denied",
+///     "ad_user_data": "denied",
+///     "ad_personalization": "denied"
+/// ]
+///
+/// FirebaseConsentService.shared.updateFirebaseConsent(consentMode: consentMode)
+///
+/// \endcodenote:
+/// This method has no effect if Firebase Analytics is not available
+/// or if the consent settings dictionary is empty.
+/// \param consentMode Dictionary of consent settings in Google Consent Mode format
+/// Expected keys: “analytics_storage”, “ad_storage”, “ad_user_data”, “ad_personalization”
+/// Expected values: “granted” or “denied”
+///
 - (void)updateFirebaseConsentWithConsentMode:(NSDictionary<NSString *, NSString *> * _Nonnull)consentMode;
 @end
 
@@ -895,8 +2132,43 @@ typedef SWIFT_ENUM(NSInteger, UniqueConsentStatus, open) {
   UniqueConsentStatusDenied = 2,
 };
 
+/// Configuration object for CMP service connection parameters.
+/// This class encapsulates all the necessary information to connect to your
+/// CMP (Consent Management Platform) service, including service identification,
+/// localization, and app identification parameters.
+/// <h2>Example</h2>
+/// \code
+/// let config = UrlConfig(
+///     id: "26cba6cf81e76",                    // Your CMP configuration ID
+///     domain: "delivery.consentmanager.net", // Your CMP service domain
+///     language: "EN",                        // User's preferred language
+///     appName: "MyAwesomeApp"               // Your app's display name
+/// )
+/// CMPManager.shared.setUrlConfig(config)
+///
+/// \endcode
 SWIFT_CLASS("_TtC13cm_sdk_ios_v39UrlConfig")
 @interface UrlConfig : NSObject
+/// Initializes URL configuration for CMP service connection.
+/// Creates a configuration object with all necessary parameters to connect
+/// to your CMP service and properly identify your app and user preferences.
+/// <h2>Example</h2>
+/// \code
+/// let config = UrlConfig(
+///     id: "your-config-id",
+///     domain: "your-cmp-domain.com",
+///     language: "EN",
+///     appName: "MyApp"
+/// )
+///
+/// \endcode\param id The unique CMP configuration identifier from your CMP dashboard
+///
+/// \param domain The CMP service domain (e.g., “delivery.consentmanager.net”)
+///
+/// \param language The language code for localization (e.g., “EN”, “DE”, “FR”)
+///
+/// \param appName The application name for identification (e.g., “MyApp”)
+///
 - (nonnull instancetype)initWithId:(NSString * _Nonnull)id domain:(NSString * _Nonnull)domain language:(NSString * _Nonnull)language appName:(NSString * _Nonnull)appName OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");

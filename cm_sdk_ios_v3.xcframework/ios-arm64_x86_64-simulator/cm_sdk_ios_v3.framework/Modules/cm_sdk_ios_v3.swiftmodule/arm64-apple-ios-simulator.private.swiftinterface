@@ -33,15 +33,12 @@ public typealias LinkClickHandler = (Foundation.URL) -> Swift.Bool
   @objc deinit
 }
 extension cm_sdk_ios_v3.CMPManager {
-  @available(*, deprecated, message: "Use checkAndOpen(jumpToSettings:completion:) instead")
-  @objc dynamic public func checkWithServerAndOpenIfNecessary(completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func checkAndOpen(jumpToSettings: Swift.Bool = false, completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc @available(iOS 13.0.0, *)
   dynamic public func checkAndOpen(jumpToSettings: Swift.Bool = false) async throws
   @objc dynamic public func forceOpen(jumpToSettings: Swift.Bool = false, completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc @available(iOS 13.0.0, *)
   dynamic public func forceOpen(jumpToSettings: Swift.Bool = false) async throws
-  @objc dynamic public func jumpToSettings(completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func acceptVendors(_ vendors: [Swift.String], completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func rejectVendors(_ vendors: [Swift.String], completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func acceptPurposes(_ purposes: [Swift.String], updatePurpose: Swift.Bool, completion: @escaping (Foundation.NSError?) -> Swift.Void)
@@ -50,28 +47,6 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func acceptAll(completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func importCMPInfo(_ cmpString: Swift.String, completion: @escaping (Foundation.NSError?) -> Swift.Void)
   @objc dynamic public func resetConsentManagementData(completion: @escaping (Foundation.NSError?) -> Swift.Void)
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func checkIfConsentIsRequired(completion: @escaping (Swift.Bool) -> Swift.Void)
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func hasUserChoice() -> Swift.Bool
-  @available(*, deprecated, message: "Use getStatusForPurpose() instead")
-  @objc dynamic public func hasPurposeConsent(id: Swift.String) -> Swift.Bool
-  @available(*, deprecated, message: "Use getStatusForVendor() instead")
-  @objc dynamic public func hasVendorConsent(id: Swift.String) -> Swift.Bool
-  @available(*, deprecated, message: "Use forceOpen(jumpToSettings:completion:) instead")
-  @objc dynamic public func openConsentLayer(completion: @escaping (Foundation.NSError?) -> Swift.Void)
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getAllPurposesIDs() -> [Swift.String]
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getEnabledPurposesIDs() -> [Swift.String]
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getDisabledPurposesIDs() -> [Swift.String]
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getAllVendorsIDs() -> [Swift.String]
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getEnabledVendorsIDs() -> [Swift.String]
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getDisabledVendorsIDs() -> [Swift.String]
 }
 extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func didReceiveConsentMessage(_ consent: Swift.String, jsonObject: [Swift.String : Any])
@@ -124,9 +99,47 @@ public enum BackgroundStyle {
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class FirebaseConsentService : ObjectiveC.NSObject {
   @objc public static let shared: cm_sdk_ios_v3.FirebaseConsentService
+  @objc public func setAutomaticConsentUpdatesEnabled(_ enabled: Swift.Bool)
+  @objc public func isAutomaticConsentUpdatesEnabled() -> Swift.Bool
+  @objc public func hasExplicitConsentConfiguration() -> Swift.Bool
   @objc public func isFirebaseAnalyticsAvailable() -> Swift.Bool
   @objc public func updateFirebaseConsent(consentMode: [Swift.String : Swift.String])
   @objc deinit
+}
+extension cm_sdk_ios_v3.CMPManager {
+  @objc public static func configureAutomaticFirebaseConsentUpdates(_ enabled: Swift.Bool)
+  @objc dynamic public func setAutomaticFirebaseConsentUpdatesEnabled(_ enabled: Swift.Bool)
+  @objc dynamic public func isAutomaticFirebaseConsentUpdatesEnabled() -> Swift.Bool
+  @objc dynamic public func updateFirebaseConsent() -> Swift.Bool
+  @objc dynamic public func isFirebaseAnalyticsAvailable() -> Swift.Bool
+}
+extension cm_sdk_ios_v3.CMPManager {
+  @available(*, deprecated, message: "Use checkAndOpen(jumpToSettings:completion:) instead")
+  @objc dynamic public func checkWithServerAndOpenIfNecessary(completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @available(*, deprecated, message: "Use forceOpen(jumpToSettings:completion:) instead")
+  @objc dynamic public func jumpToSettings(completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func checkIfConsentIsRequired(completion: @escaping (Swift.Bool) -> Swift.Void)
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func hasUserChoice() -> Swift.Bool
+  @available(*, deprecated, message: "Use getStatusForPurpose() instead")
+  @objc dynamic public func hasPurposeConsent(id: Swift.String) -> Swift.Bool
+  @available(*, deprecated, message: "Use getStatusForVendor() instead")
+  @objc dynamic public func hasVendorConsent(id: Swift.String) -> Swift.Bool
+  @available(*, deprecated, message: "Use forceOpen(jumpToSettings:completion:) instead")
+  @objc dynamic public func openConsentLayer(completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getAllPurposesIDs() -> [Swift.String]
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getEnabledPurposesIDs() -> [Swift.String]
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getDisabledPurposesIDs() -> [Swift.String]
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getAllVendorsIDs() -> [Swift.String]
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getEnabledVendorsIDs() -> [Swift.String]
+  @available(*, deprecated, message: "Use getUserStatus() instead")
+  @objc dynamic public func getDisabledVendorsIDs() -> [Swift.String]
 }
 @objcMembers @objc public class UrlConfig : ObjectiveC.NSObject {
   @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String)
