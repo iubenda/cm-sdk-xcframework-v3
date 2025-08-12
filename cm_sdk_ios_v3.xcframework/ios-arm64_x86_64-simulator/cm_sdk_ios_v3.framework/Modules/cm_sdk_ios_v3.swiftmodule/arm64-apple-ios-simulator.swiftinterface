@@ -142,7 +142,7 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func getDisabledVendorsIDs() -> [Swift.String]
 }
 @objcMembers @objc public class UrlConfig : ObjectiveC.NSObject {
-  @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String)
+  @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String, jsonConfig: Swift.String? = nil)
   @objc deinit
 }
 @objc public enum UniqueConsentStatus : Swift.Int {
