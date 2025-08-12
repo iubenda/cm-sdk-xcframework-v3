@@ -4267,7 +4267,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(id:domain:language:appName:)",
+            "printedName": "init(id:domain:language:appName:jsonConfig:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -4298,11 +4298,26 @@
                 "name": "String",
                 "printedName": "Swift.String",
                 "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Constructor",
-            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)UrlConfig(im)initWithId:domain:language:appName:",
-            "mangledName": "$s13cm_sdk_ios_v39UrlConfigC2id6domain8language7appNameACSS_S3Stcfc",
+            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)UrlConfig(im)initWithId:domain:language:appName:jsonConfig:",
+            "mangledName": "$s13cm_sdk_ios_v39UrlConfigC2id6domain8language7appName04jsonF0ACSS_S4SSgtcfc",
             "moduleName": "cm_sdk_ios_v3",
             "declAttributes": [
               "AccessControl",
@@ -5024,28 +5039,28 @@
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 12888,
+      "offset": 13159,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 13998,
+      "offset": 14269,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 15118,
+      "offset": 15389,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 15946,
+      "offset": 16217,
       "length": 5,
       "value": "false"
     },

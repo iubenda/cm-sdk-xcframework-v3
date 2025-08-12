@@ -362,6 +362,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPManager *
 /// CMPManager.shared.setUrlConfig(config)
 ///
 /// \endcode\param config The URL configuration containing domain, ID, language, and app name
+///  # <em>Notes:</em> #
+///  - If you’re a consentmanager client, you should not use jsonConfig parameter as it’s an
+///   optional reserved for iubenda clients!
 ///
 - (void)setUrlConfig:(UrlConfig * _Nonnull)config;
 /// Configures the visual appearance and behavior of the consent layer.
@@ -1077,7 +1080,7 @@ SWIFT_CLASS("_TtC13cm_sdk_ios_v39UrlConfig")
 ///
 /// \param appName The application name for identification (e.g., “MyApp”)
 ///
-- (nonnull instancetype)initWithId:(NSString * _Nonnull)id domain:(NSString * _Nonnull)domain language:(NSString * _Nonnull)language appName:(NSString * _Nonnull)appName OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithId:(NSString * _Nonnull)id domain:(NSString * _Nonnull)domain language:(NSString * _Nonnull)language appName:(NSString * _Nonnull)appName jsonConfig:(NSString * _Nullable)jsonConfig OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -1454,6 +1457,9 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) CMPManager *
 /// CMPManager.shared.setUrlConfig(config)
 ///
 /// \endcode\param config The URL configuration containing domain, ID, language, and app name
+///  # <em>Notes:</em> #
+///  - If you’re a consentmanager client, you should not use jsonConfig parameter as it’s an
+///   optional reserved for iubenda clients!
 ///
 - (void)setUrlConfig:(UrlConfig * _Nonnull)config;
 /// Configures the visual appearance and behavior of the consent layer.
@@ -2169,7 +2175,7 @@ SWIFT_CLASS("_TtC13cm_sdk_ios_v39UrlConfig")
 ///
 /// \param appName The application name for identification (e.g., “MyApp”)
 ///
-- (nonnull instancetype)initWithId:(NSString * _Nonnull)id domain:(NSString * _Nonnull)domain language:(NSString * _Nonnull)language appName:(NSString * _Nonnull)appName OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithId:(NSString * _Nonnull)id domain:(NSString * _Nonnull)domain language:(NSString * _Nonnull)language appName:(NSString * _Nonnull)appName jsonConfig:(NSString * _Nullable)jsonConfig OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
