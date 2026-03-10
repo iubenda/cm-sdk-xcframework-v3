@@ -1,8 +1,9 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
 // swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name cm_sdk_ios_v3
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
 import Foundation
+import OSLog
 import Swift
 import UIKit
 import WebKit
@@ -24,6 +25,7 @@ public typealias LinkClickHandler = (Foundation.URL) -> Swift.Bool
   @objc public func removeLinkClickHandler()
   @objc(setUrlConfig:) public func setUrlConfig(_ config: cm_sdk_ios_v3.UrlConfig)
   @objc(setWebViewConfig:) public func setWebViewConfig(_ config: cm_sdk_ios_v3.ConsentLayerUIConfig)
+  @objc public func setATTStatus(_ status: Swift.Int)
   @objc(setPresentingViewController:) public func setPresentingViewController(_ viewController: UIKit.UIViewController)
   @objc public func getStatusForPurpose(id: Swift.String) -> cm_sdk_ios_v3.UniqueConsentStatus
   @objc public func getStatusForVendor(id: Swift.String) -> cm_sdk_ios_v3.UniqueConsentStatus
@@ -33,27 +35,57 @@ public typealias LinkClickHandler = (Foundation.URL) -> Swift.Bool
   @objc deinit
 }
 extension cm_sdk_ios_v3.CMPManager {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func checkAndOpen(jumpToSettings: Swift.Bool = false, completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  #endif
   @objc @available(iOS 13.0.0, *)
   dynamic public func checkAndOpen(jumpToSettings: Swift.Bool = false) async throws
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc dynamic public func isConsentRequired(completion: @escaping (Swift.Bool, Foundation.NSError?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func isConsentRequired(result completion: @escaping (Swift.Result<Swift.Bool, any Swift.Error>) -> Swift.Void)
+  #endif
+  @objc @available(iOS 13.0.0, *)
+  dynamic public func isConsentRequired() async throws -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func forceOpen(jumpToSettings: Swift.Bool = false, completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  #endif
   @objc @available(iOS 13.0.0, *)
   dynamic public func forceOpen(jumpToSettings: Swift.Bool = false) async throws
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func acceptVendors(_ vendors: [Swift.String], completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func rejectVendors(_ vendors: [Swift.String], completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func acceptPurposes(_ purposes: [Swift.String], updatePurpose: Swift.Bool, completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func rejectPurposes(_ purposes: [Swift.String], updateVendor: Swift.Bool, completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func rejectAll(completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func acceptAll(completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func importCMPInfo(_ cmpString: Swift.String, completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func resetConsentManagementData(completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  #endif
 }
 extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func didReceiveConsentMessage(_ consent: Swift.String, jsonObject: [Swift.String : Any])
   @objc dynamic public func didReceiveOpenMessage()
   @objc dynamic public func didCloseConsentLayer()
   @objc dynamic public func didReceiveError(_ error: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func getOnClickLinkCallback() -> cm_sdk_ios_v3.LinkClickHandler?
+  #endif
 }
 @_hasMissingDesignatedInitializers @objc public class CMPUserStatusResponse : ObjectiveC.NSObject {
   @objc final public let status: Swift.String
@@ -113,43 +145,19 @@ extension cm_sdk_ios_v3.CMPManager {
   @objc dynamic public func updateFirebaseConsent() -> Swift.Bool
   @objc dynamic public func isFirebaseAnalyticsAvailable() -> Swift.Bool
 }
-extension cm_sdk_ios_v3.CMPManager {
-  @available(*, deprecated, message: "Use checkAndOpen(jumpToSettings:completion:) instead")
-  @objc dynamic public func checkWithServerAndOpenIfNecessary(completion: @escaping (Foundation.NSError?) -> Swift.Void)
-  @available(*, deprecated, message: "Use forceOpen(jumpToSettings:completion:) instead")
-  @objc dynamic public func jumpToSettings(completion: @escaping (Foundation.NSError?) -> Swift.Void)
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func checkIfConsentIsRequired(completion: @escaping (Swift.Bool) -> Swift.Void)
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func hasUserChoice() -> Swift.Bool
-  @available(*, deprecated, message: "Use getStatusForPurpose() instead")
-  @objc dynamic public func hasPurposeConsent(id: Swift.String) -> Swift.Bool
-  @available(*, deprecated, message: "Use getStatusForVendor() instead")
-  @objc dynamic public func hasVendorConsent(id: Swift.String) -> Swift.Bool
-  @available(*, deprecated, message: "Use forceOpen(jumpToSettings:completion:) instead")
-  @objc dynamic public func openConsentLayer(completion: @escaping (Foundation.NSError?) -> Swift.Void)
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getAllPurposesIDs() -> [Swift.String]
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getEnabledPurposesIDs() -> [Swift.String]
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getDisabledPurposesIDs() -> [Swift.String]
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getAllVendorsIDs() -> [Swift.String]
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getEnabledVendorsIDs() -> [Swift.String]
-  @available(*, deprecated, message: "Use getUserStatus() instead")
-  @objc dynamic public func getDisabledVendorsIDs() -> [Swift.String]
-}
 @objcMembers @objc public class UrlConfig : ObjectiveC.NSObject {
-  @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String, jsonConfig: Swift.String? = nil)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public init(id: Swift.String, domain: Swift.String, language: Swift.String, appName: Swift.String, jsonConfig: Swift.String? = nil, noHash: Swift.Bool = false, webViewConnectionTimeoutMillis: Swift.Int = 3000)
+  #endif
   @objc deinit
 }
 @objc public enum UniqueConsentStatus : Swift.Int {
   case choiceDoesntExist
   case granted
   case denied
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
