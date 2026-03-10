@@ -162,6 +162,23 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "cm_sdk_ios_v3",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "OSLog",
+        "printedName": "OSLog",
+        "declKind": "Import",
+        "moduleName": "cm_sdk_ios_v3"
+      },
+      {
+        "kind": "Import",
         "name": "UIKit",
         "printedName": "UIKit",
         "declKind": "Import",
@@ -487,6 +504,34 @@
           },
           {
             "kind": "Function",
+            "name": "setATTStatus",
+            "printedName": "setATTStatus(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)CMPManager(im)setATTStatus:",
+            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC12setATTStatusyySiF",
+            "moduleName": "cm_sdk_ios_v3",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "setPresentingViewController",
             "printedName": "setPresentingViewController(_:)",
             "children": [
@@ -736,6 +781,152 @@
             "declKind": "Func",
             "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)checkAndOpenWithJumpToSettings:completionHandler:",
             "mangledName": "$s13cm_sdk_ios_v310CMPManagerC12checkAndOpen14jumpToSettingsySb_tYaKF",
+            "moduleName": "cm_sdk_ios_v3",
+            "intro_iOS": "13.0.0",
+            "declAttributes": [
+              "Dynamic",
+              "AccessControl",
+              "Available",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "isConsentRequired",
+            "printedName": "isConsentRequired(completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.Bool, Foundation.NSError?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.Bool, Foundation.NSError?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Foundation.NSError?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "NSError",
+                            "printedName": "Foundation.NSError",
+                            "usr": "c:objc(cs)NSError"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)isConsentRequiredWithCompletion:",
+            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC17isConsentRequired10completionyySb_So7NSErrorCSgtc_tF",
+            "moduleName": "cm_sdk_ios_v3",
+            "objc_name": "isConsentRequiredWithCompletion:",
+            "declAttributes": [
+              "Dynamic",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "isConsentRequired",
+            "printedName": "isConsentRequired(result:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.Result<Swift.Bool, any Swift.Error>) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Result",
+                    "printedName": "Swift.Result<Swift.Bool, any Swift.Error>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "any Swift.Error",
+                        "usr": "s:s5ErrorP"
+                      }
+                    ],
+                    "usr": "s:s6ResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13cm_sdk_ios_v310CMPManagerC17isConsentRequired6resultyys6ResultOySbs5Error_pGc_tF",
+            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC17isConsentRequired6resultyys6ResultOySbs5Error_pGc_tF",
+            "moduleName": "cm_sdk_ios_v3",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "isConsentRequired",
+            "printedName": "isConsentRequired()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)isConsentRequiredWithCompletionHandler:",
+            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC17isConsentRequiredSbyYaKF",
             "moduleName": "cm_sdk_ios_v3",
             "intro_iOS": "13.0.0",
             "declAttributes": [
@@ -1618,502 +1809,6 @@
               "AccessControl",
               "ObjC",
               "RawDocComment"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "checkWithServerAndOpenIfNecessary",
-            "printedName": "checkWithServerAndOpenIfNecessary(completion:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(Foundation.NSError?) -> ()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Foundation.NSError?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "NSError",
-                        "printedName": "Foundation.NSError",
-                        "usr": "c:objc(cs)NSError"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ]
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)checkWithServerAndOpenIfNecessaryWithCompletion:",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC33checkWithServerAndOpenIfNecessary10completionyySo7NSErrorCSgc_tF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "objc_name": "checkWithServerAndOpenIfNecessaryWithCompletion:",
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "jumpToSettings",
-            "printedName": "jumpToSettings(completion:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(Foundation.NSError?) -> ()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Foundation.NSError?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "NSError",
-                        "printedName": "Foundation.NSError",
-                        "usr": "c:objc(cs)NSError"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ]
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)jumpToSettingsWithCompletion:",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC14jumpToSettings10completionyySo7NSErrorCSgc_tF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "objc_name": "jumpToSettingsWithCompletion:",
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "checkIfConsentIsRequired",
-            "printedName": "checkIfConsentIsRequired(completion:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(Swift.Bool) -> ()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ]
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)checkIfConsentIsRequiredWithCompletion:",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC24checkIfConsentIsRequired10completionyySbc_tF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "objc_name": "checkIfConsentIsRequiredWithCompletion:",
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "hasUserChoice",
-            "printedName": "hasUserChoice()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)hasUserChoice",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC13hasUserChoiceSbyF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "hasPurposeConsent",
-            "printedName": "hasPurposeConsent(id:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)hasPurposeConsentWithId:",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC17hasPurposeConsent2idSbSS_tF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "objc_name": "hasPurposeConsentWithId:",
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "hasVendorConsent",
-            "printedName": "hasVendorConsent(id:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)hasVendorConsentWithId:",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC16hasVendorConsent2idSbSS_tF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "objc_name": "hasVendorConsentWithId:",
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "openConsentLayer",
-            "printedName": "openConsentLayer(completion:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(Foundation.NSError?) -> ()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Foundation.NSError?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "NSError",
-                        "printedName": "Foundation.NSError",
-                        "usr": "c:objc(cs)NSError"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ]
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)openConsentLayerWithCompletion:",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC16openConsentLayer10completionyySo7NSErrorCSgc_tF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "objc_name": "openConsentLayerWithCompletion:",
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "getAllPurposesIDs",
-            "printedName": "getAllPurposesIDs()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[Swift.String]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)getAllPurposesIDs",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC17getAllPurposesIDsSaySSGyF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "getEnabledPurposesIDs",
-            "printedName": "getEnabledPurposesIDs()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[Swift.String]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)getEnabledPurposesIDs",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC21getEnabledPurposesIDsSaySSGyF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "getDisabledPurposesIDs",
-            "printedName": "getDisabledPurposesIDs()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[Swift.String]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)getDisabledPurposesIDs",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC22getDisabledPurposesIDsSaySSGyF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "getAllVendorsIDs",
-            "printedName": "getAllVendorsIDs()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[Swift.String]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)getAllVendorsIDs",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC16getAllVendorsIDsSaySSGyF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "getEnabledVendorsIDs",
-            "printedName": "getEnabledVendorsIDs()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[Swift.String]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)getEnabledVendorsIDs",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC20getEnabledVendorsIDsSaySSGyF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
-            ],
-            "isFromExtension": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "getDisabledVendorsIDs",
-            "printedName": "getDisabledVendorsIDs()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[Swift.String]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@CM@cm_sdk_ios_v3@objc(cs)CMPManager(im)getDisabledVendorsIDs",
-            "mangledName": "$s13cm_sdk_ios_v310CMPManagerC21getDisabledVendorsIDsSaySSGyF",
-            "moduleName": "cm_sdk_ios_v3",
-            "deprecated": true,
-            "declAttributes": [
-              "Dynamic",
-              "AccessControl",
-              "ObjC",
-              "Available"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -4230,6 +3925,16 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "cm_sdk_ios_v3",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "WebKit",
         "printedName": "WebKit",
         "declKind": "Import",
@@ -4251,13 +3956,10 @@
       },
       {
         "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
+        "name": "UIKit",
+        "printedName": "UIKit",
         "declKind": "Import",
-        "moduleName": "cm_sdk_ios_v3",
-        "declAttributes": [
-          "RawDocComment"
-        ]
+        "moduleName": "cm_sdk_ios_v3"
       },
       {
         "kind": "TypeDecl",
@@ -4267,7 +3969,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(id:domain:language:appName:jsonConfig:)",
+            "printedName": "init(id:domain:language:appName:jsonConfig:noHash:webViewConnectionTimeoutMillis:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -4313,11 +4015,25 @@
                 ],
                 "hasDefaultArg": true,
                 "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "hasDefaultArg": true,
+                "usr": "s:Si"
               }
             ],
             "declKind": "Constructor",
-            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)UrlConfig(im)initWithId:domain:language:appName:jsonConfig:",
-            "mangledName": "$s13cm_sdk_ios_v39UrlConfigC2id6domain8language7appName04jsonF0ACSS_S4SSgtcfc",
+            "usr": "c:@M@cm_sdk_ios_v3@objc(cs)UrlConfig(im)initWithId:domain:language:appName:jsonConfig:noHash:webViewConnectionTimeoutMillis:",
+            "mangledName": "$s13cm_sdk_ios_v39UrlConfigC2id6domain8language7appName04jsonF06noHash30webViewConnectionTimeoutMillisACSS_S4SSgSbSitcfc",
             "moduleName": "cm_sdk_ios_v3",
             "declAttributes": [
               "AccessControl",
@@ -4709,13 +4425,20 @@
       },
       {
         "kind": "Import",
-        "name": "WebKit",
-        "printedName": "WebKit",
+        "name": "Foundation",
+        "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "cm_sdk_ios_v3",
         "declAttributes": [
           "RawDocComment"
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "WebKit",
+        "printedName": "WebKit",
+        "declKind": "Import",
+        "moduleName": "cm_sdk_ios_v3"
       }
     ],
     "json_format_version": 8
@@ -4731,63 +4454,42 @@
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 1755,
+      "offset": 1768,
       "length": 7,
-      "value": "\"3.3.0\""
+      "value": "\"3.9.0\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 1789,
-      "length": 5,
-      "value": "\"ios\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2057,
-      "length": 5,
-      "value": "\"ios\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2124,
+      "offset": 1809,
       "length": 12,
       "value": "\"sdkversion\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2168,
-      "length": 13,
-      "value": "\"cmpplatform\""
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2213,
+      "offset": 1853,
       "length": 13,
       "value": "\"cmpdarkmode\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2252,
+      "offset": 1892,
       "length": 7,
       "value": "\"tvsdk\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2291,
+      "offset": 1931,
       "length": 7,
       "value": "\"appid\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/CMPConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2324,
+      "offset": 1964,
       "length": 22,
       "value": "\"\/delivery\/appsdk\/v3\/\""
     },
@@ -4983,84 +4685,147 @@
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 16664,
+      "offset": 16745,
       "length": 8,
       "value": "\"string\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 16692,
+      "offset": 16773,
       "length": 5,
       "value": "\"int\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 16722,
+      "offset": 16803,
       "length": 8,
       "value": "\"binary\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 16815,
+      "offset": 16896,
       "length": 19,
       "value": "\"analytics_storage\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 16856,
+      "offset": 16937,
       "length": 12,
       "value": "\"ad_storage\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 16891,
+      "offset": 16972,
       "length": 14,
       "value": "\"ad_user_data\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel.swift",
       "kind": "StringLiteral",
-      "offset": 16935,
+      "offset": 17016,
       "length": 20,
       "value": "\"ad_personalization\""
     },
     {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/CMPLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 802,
+      "length": 9,
+      "value": "\"Manager\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/CMPLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 835,
+      "length": 9,
+      "value": "\"WebView\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/CMPLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 869,
+      "length": 10,
+      "value": "\"Firebase\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/CMPLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 903,
+      "length": 9,
+      "value": "\"Consent\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/CMPLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 936,
+      "length": 9,
+      "value": "\"Network\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/CMPLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 964,
+      "length": 4,
+      "value": "\"UI\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/CMPLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 992,
+      "length": 9,
+      "value": "\"Storage\""
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/CMPLogger.swift",
+      "kind": "StringLiteral",
+      "offset": 1072,
+      "length": 27,
+      "value": "\"com.iubenda.cm-sdk-ios-v3\""
+    },
+    {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 1871,
+      "offset": 1979,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2024,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 15098,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 13159,
+      "offset": 16208,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 14269,
+      "offset": 20264,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 15389,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/CMPManager.swift",
-      "kind": "BooleanLiteral",
-      "offset": 16217,
+      "offset": 21092,
       "length": 5,
       "value": "false"
     },
@@ -5130,14 +4895,14 @@
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/FirebaseConsentService.swift",
       "kind": "BooleanLiteral",
-      "offset": 1173,
+      "offset": 1252,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Services\/FirebaseConsentService.swift",
       "kind": "BooleanLiteral",
-      "offset": 1217,
+      "offset": 1296,
       "length": 5,
       "value": "false"
     },
@@ -5249,23 +5014,44 @@
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Utils\/UrlBuilder.swift",
       "kind": "BooleanLiteral",
-      "offset": 1305,
+      "offset": 1243,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/WebViewManager.swift",
       "kind": "StringLiteral",
-      "offset": 396,
+      "offset": 409,
       "length": 24,
       "value": "\"com.cmp.WebViewManager\""
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/WebViewManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 605,
-      "length": 2,
-      "value": "10"
+      "offset": 688,
+      "length": 4,
+      "value": "3000"
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Managers\/WebViewManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 811,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/UrlConfig.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3470,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Configuration\/UrlConfig.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3523,
+      "length": 4,
+      "value": "3000"
     },
     {
       "filePath": "\/Users\/fabiotorre\/Documents\/progetti\/cm-sdk-ios-v3\/cm-sdk-ios-v3\/Models\/CMPConsentModel+Domain.swift",
