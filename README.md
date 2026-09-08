@@ -1,4 +1,4 @@
-# ``consentmanager CMP SDK v3.9.0``
+# ``consentmanager CMP SDK v3.10.0``
 
 # cm_sdk_ios_v3
 
